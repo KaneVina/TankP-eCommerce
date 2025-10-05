@@ -15,7 +15,6 @@
 
         <!-- Plugins CSS File -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />
 
         <!-- Main CSS File -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.min.css" />
@@ -24,10 +23,44 @@
             type="text/css"
             href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"
             />
+        <style>
+            .form-control-custom {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                font-size: 15px;
+                box-sizing: border-box;
+            }
+
+            .separator {
+                display: flex;
+                align-items: center;
+                text-align: center;
+                margin: 20px 0;
+                color: #666;
+                font-weight: 500;
+            }
+
+            .separator::before,
+            .separator::after {
+                content: "";
+                flex: 1;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .separator:not(:empty)::before {
+                margin-right: 0.75em;
+            }
+
+            .separator:not(:empty)::after {
+                margin-left: 0.75em;
+            }
+        </style>
     </head>
 
     <body>
-        F<jsp:include page="/view/common/header.jsp"/>
+       <jsp:include page="/view/common/header.jsp"/>
         <main class="main">
             <div class="page-header">
                 <div class="container d-flex flex-column align-items-center">

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : Oct 2, 2025, 1:04:32 PM
-    Author     : PHUC KHANG
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -22,7 +16,6 @@
 
         <!-- Plugins CSS File -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />
 
         <!-- Main CSS File -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.min.css" />
@@ -31,6 +24,38 @@
             type="text/css"
             href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"
             />
+        <style>.form-control-custom {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                font-size: 15px;
+                box-sizing: border-box;
+            }
+
+            .separator {
+                display: flex;
+                align-items: center;
+                text-align: center;
+                margin: 20px 0;
+                color: #666;
+                font-weight: 500;
+            }
+
+            .separator::before,
+            .separator::after {
+                content: "";
+                flex: 1;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .separator:not(:empty)::before {
+                margin-right: 0.75em;
+            }
+
+            .separator:not(:empty)::after {
+                margin-left: 0.75em;
+            }</style>
     </head>
 
     <body>
@@ -109,26 +134,17 @@
                                                 class="forget-password text-dark form-footer-right"
                                                 >Forgot Password?</a>
                                         </div>
-                                        <!-- Submit button -->
                                         <div class="form-footer mb-2 mt-3">
-                                            <button
-                                                type="submit"
-                                                class="form-control-custom btn-dark"
-                                                >
-                                                Login
-                                            </button>
+                                            <button type="submit" class="form-control-custom btn-dark"> Login </button>
                                         </div>
 
-                                        <!-- Separator -->
-                                        <div class="separator">
-                                            <span>Or</span>
-                                        </div>
+                                        <div class="separator"><span>Or</span></div>
 
-                                        <!-- Login button -->
                                         <div class="form-footer mt-2">
-                                            <button
-                                                type="button"
+                                            <button 
+                                                type="button" 
                                                 class="form-control-custom btn-light"
+                                                onclick="window.location.href = '${pageContext.request.contextPath}/view/authen/login.jsp';"
                                                 >
                                                 Register
                                             </button>

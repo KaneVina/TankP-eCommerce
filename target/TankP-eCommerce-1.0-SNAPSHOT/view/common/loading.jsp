@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <style>
+    /* 1. CONTAINER CHÍNH - Giữ nguyên */
     .custom-loader-container {
         display: flex;
         flex-direction: column;
@@ -10,8 +11,11 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.9); 
         z-index: 9999;
+        backdrop-filter: blur(5px); 
+        -webkit-backdrop-filter: blur(5px);
+        transition: opacity 0.5s ease-out; 
     }
 
     .logo-spinner {
@@ -32,14 +36,17 @@
         z-index: 2;
     }
 
+    /* 2. SPINNER - Đã đổi màu viền nền (border) */
     .spinner {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        border: 5px solid rgba(173, 173, 173, 0.2);
-        border-top: 5px solid #6c757d; 
+        /* Đã đổi màu viền nền từ xám sang màu xanh chủ đạo (pha loãng) */
+        border: 5px solid rgba(0, 136, 204, 0.2); 
+        /* Giữ nguyên màu viền quay (border-top) */
+        border-top: 5px solid #0088CC;  
         border-radius: 50%;
         animation: spin 1.2s linear infinite;
         z-index: 1;
@@ -56,15 +63,16 @@
         padding-top: 10px;
     }
 
+    /* 3. DOTS - Giữ nguyên màu chấm */
     .dot {
         width: 10px;
         height: 10px;
         margin: 0 5px;
-        background-color: #6c757d;
+        background-color: #0088CC;
         border-radius: 50%;
         opacity: 0;
         animation: bounce 1.2s infinite ease-in-out;
-        animation-delay: calc(0.1s * var(--i));
+        animation-delay: calc(0.1s * var(--i)); 
     }
 
     @keyframes bounce {
@@ -90,12 +98,13 @@
         <span class="dot" style="--i:2;"></span>
         <span class="dot" style="--i:3;"></span>
         <span class="dot" style="--i:4;"></span>
-        <span class="dot" style="--i:5;"></span> </div>
+        <span class="dot" style="--i:5;"></span> s
+    </div>
 </div>
 
 <script>
     const startTime = Date.now();
-    const minDisplayTime = 500; // Đã đổi thành 500ms (0.5 giây)
+    const minDisplayTime = 500; 
 
     window.addEventListener('load', function() {
         const loader = document.getElementById('customLoader');

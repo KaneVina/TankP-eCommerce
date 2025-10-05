@@ -4821,7 +4821,7 @@ span.page-link,
 .login-popup .form-input {
     height: 42px;
 }
-.login-popup .container {
+.login-popup .container {form-footer
     padding: 3.9rem 3.6rem 4.7rem;
 }
 .login-popup .title {
@@ -16641,29 +16641,6 @@ i.wishlist-empty {
     }
 }
 
-.separator {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 20px 0;
-    color: #666;
-    font-weight: 500;
-}
-
-.separator::before,
-.separator::after {
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid #ddd;
-}
-
-.separator:not(:empty)::before {
-    margin-right: 0.75em;
-}
-
-.separator:not(:empty)::after {
-    margin-left: 0.75em;
-}
 .btn {
     display: block;
     width: 100%;

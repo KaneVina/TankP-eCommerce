@@ -1,9 +1,3 @@
-<%-- 
-    Document   : footer
-    Created on : Oct 2, 2025, 9:05:01 AM
-    Author     : PHUC KHANG
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <footer class="footer bg-dark">
         <div class="footer-middle">
@@ -14,20 +8,14 @@
                   <h4 class="widget-title">Contact Info</h4>
                   <ul class="contact-info">
                     <li>
-                      <span class="contact-info-label">Address:</span>Nguyen Van
-                      Cu Street, Cantho City Viet Nam
-                    </li>
+                      <span class="contact-info-label">Address:</span>Nguyen Van Cu Street, Cantho City Viet Nam </li>
                     <li>
                       <span class="contact-info-label">Phone:</span
                       ><a href="tel:">(+84) 849 324 423</a>
                     </li>
                     <li>
                       <span class="contact-info-label">Email:</span>
-                      <a href="#"
-                        ><span class="__cf_email__"
-                          >KhangNPCE181578@fpt.edu.vn</span
-                        ></a
-                      >
+                      <a href="#"><span class="__cf_email__">KhangNPCE181578@fpt.edu.vn</span></a>
                     </li>
                   </ul>
                   <div class="social-icons">
@@ -37,7 +25,6 @@
                       target="_blank"
                       title="Facebook"
                     ></a>
-                    
                     <a
                       href="#"
                       class="social-icon social-twitter icon-twitter"
@@ -51,11 +38,8 @@
                       title="Instagram"
                     ></a>
                   </div>
-                  <!-- End .social-icons -->
                 </div>
-                <!-- End .widget -->
               </div>
-              <!-- End .col-lg-3 -->
 
               <div class="col-lg-3 col-sm-6">
                 <div class="widget">
@@ -74,9 +58,7 @@
                     <li><a href="#">Privacy</a></li>
                   </ul>
                 </div>
-                <!-- End .widget -->
               </div>
-              <!-- End .col-lg-3 -->
 
               <div class="col-lg-3 col-sm-6">
                 <div class="widget">
@@ -104,8 +86,7 @@
                 <div class="widget widget-newsletter">
                   <h4 class="widget-title">Subscribe newsletter</h4>
                   <p>
-                    Get all the latest information on events, sales and offers.
-                    Sign up for newsletter:
+                    Get all the latest information on events, sales and offers. Sign up for newsletter:
                   </p>
                   <form action="#" class="mb-0">
                     <input
@@ -122,15 +103,10 @@
                     />
                   </form>
                 </div>
-                <!-- End .widget -->
               </div>
-              <!-- End .col-lg-3 -->
             </div>
-            <!-- End .row -->
           </div>
-          <!-- End .container -->
         </div>
-        <!-- End .footer-middle -->
 
         <div class="container">
           <div class="footer-bottom">
@@ -151,33 +127,23 @@
                 <div class="payment-icons">
                   <span
                     class="payment-icon visa"
-                    style="
-                      background-image: url(assets/images/payments/payment-visa.svg);
-                    "
+                    style="background-image: url(${pageContext.request.contextPath}/assets/images/payments/payment-visa.svg);"
                   ></span>
                   <span
                     class="payment-icon paypal"
-                    style="
-                      background-image: url(assets/images/payments/payment-paypal.svg);
-                    "
+                    style="background-image: url(${pageContext.request.contextPath}/assets/images/payments/payment-paypal.svg);"
                   ></span>
                   <span
                     class="payment-icon stripe"
-                    style="
-                      background-image: url(assets/images/payments/payment-stripe.png);
-                    "
+                    style="background-image: url(${pageContext.request.contextPath}/assets/images/payments/payment-stripe.png);"
                   ></span>
                   <span
                     class="payment-icon verisign"
-                    style="
-                      background-image: url(assets/images/payments/payment-verisign.svg);
-                    "
+                    style="background-image: url(${pageContext.request.contextPath}/assets/images/payments/payment-verisign.svg);"
                   ></span>
                 </div>
               </div>
             </div>
           </div>
-          <!-- End .footer-bottom -->
         </div>
-        <!-- End .container -->
       </footer>

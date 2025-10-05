@@ -24,7 +24,8 @@
             type="text/css"
             href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"
             />
-        <style>.form-control-custom {
+        <style>
+            .form-control-custom {
                 width: 100%;
                 padding: 12px;
                 border: 1px solid #ddd;
@@ -55,7 +56,8 @@
 
             .separator:not(:empty)::after {
                 margin-left: 0.75em;
-            }</style>
+            }
+        </style>
     </head>
 
     <body>

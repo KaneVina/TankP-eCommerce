@@ -28,7 +28,6 @@
 
     <body>
         <jsp:include page="common/header.jsp"></jsp:include>
-
             <main class="main">
                 <div class="category-banner-container bg-gray">
                     <div

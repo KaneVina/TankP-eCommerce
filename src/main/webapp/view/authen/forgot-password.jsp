@@ -1,23 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <body>
-    <c:if test="${not empty user}">
-        <p>Xin chào, ${user.name}!</p>
-    </c:if>
-
-    <ul>
-        <c:forEach var="item" items="${list}">
-            <li>${item}</li>
-        </c:forEach>
-    </ul>
-</body>
-</html>
-
-<!DOCTYPE html>
 <html lang="en">
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
     <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -38,8 +23,8 @@
     </head>
 
     <body>
+        <jsp:include page="/view/common/header.jsp"/>
         <main class="main">
-            <jsp:include page="/view/common/header.jsp"/>
             <div class="page-header">
                 <div class="container d-flex flex-column align-items-center">
                     <nav aria-label="breadcrumb" class="breadcrumb-nav">
@@ -99,9 +84,8 @@
                     </div>
                 </div>
             </div>
-            <jsp:include page="/view/common/footer.jsp"/>
-
         </main>
+        <jsp:include page="/view/common/footer.jsp"/>
     </body>
     <!-- End .main -->
 

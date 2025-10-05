@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
     <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -37,8 +37,8 @@
     </style>
 
     <body>
+        <jsp:include page="/view/common/header.jsp"/>
         <main class="main">
-            <jsp:include page="/view/common/header.jsp"/>
             <div class="page-header">
                 <div class="container d-flex flex-column align-items-center">
                     <nav aria-label="breadcrumb" class="breadcrumb-nav">
@@ -83,7 +83,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Footer -->
                                     <div class="form-footer mb-0 d-flex justify-content-between align-items-center">
                                         <p class="mb-0">
                                             Didn't receive the code?
@@ -102,9 +101,8 @@
                     </div>
                 </div>
             </div>
-            <jsp:include page="/view/common/footer.jsp"/>
-
         </main>
+        <jsp:include page="/view/common/footer.jsp"/>
     </body>
     <!-- End .main -->
 

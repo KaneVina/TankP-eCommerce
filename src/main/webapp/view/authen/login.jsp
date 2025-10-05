@@ -8,8 +8,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
     <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -32,12 +32,9 @@
             href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"
             />
     </head>
-    <header>
-        <!-- Header Start -->
-        <jsp:include page="/view/common/header.jsp"/>
-    </header>
 
     <body>
+        <jsp:include page="/view/common/header.jsp"/>
         <main class="main">
             <div class="page-header">
                 <div class="container d-flex flex-column align-items-center">
@@ -153,11 +150,9 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Footer Start -->
-            <jsp:include page="/view/common/footer.jsp"/>
         </main>
-        <!-- End .main -->
+        <!-- Footer Start -->
+        <jsp:include page="/view/common/footer.jsp"/>
 
         <!--loading-->
         <jsp:include page="/view/common/loading.jsp"/> 

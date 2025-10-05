@@ -13,7 +13,7 @@
         <meta name="description" content="Tank - Bootstrap eCommerce Template" />
         <meta name="author" content="SW-THEMES" />
 
-         <!-- Plugins CSS File -->
+        <!-- Plugins CSS File -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />
 
@@ -27,10 +27,7 @@
     </head>
 
     <body>
-        
-        <header>
-            <jsp:include page="/view/common/header.jsp"/>
-        </header>
+        F<jsp:include page="/view/common/header.jsp"/>
         <main class="main">
             <div class="page-header">
                 <div class="container d-flex flex-column align-items-center">
@@ -56,12 +53,12 @@
                 <div class="row">
                     <div class="col-lg-12 mx-auto">
                         <div class="row align-items-stretch">
-                            
+
                             <div class="col-md-6 p-0 d-none d-md-block">
                                 <img src="${pageContext.request.contextPath}/assets/images/menu-banner-2.png"
-                                   alt="Register Illustration"
-                                   class="w-100 h-100"
-                                   style="object-fit: cover"/>
+                                     alt="Register Illustration"
+                                     class="w-100 h-100"
+                                     style="object-fit: cover"/>
                             </div>
 
                             <div class="col-md-6 d-flex align-items-center">
@@ -115,15 +112,15 @@
                                             <button 
                                                 type="button" 
                                                 class="form-control-custom btn-light"
-                                                onclick="window.location.href='${pageContext.request.contextPath}/view/authen/login.jsp';"
-                                            >
+                                                onclick="window.location.href = '${pageContext.request.contextPath}/view/authen/login.jsp';"
+                                                >
                                                 Login
                                             </button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
     <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -35,9 +35,9 @@
         }
     </style>
 
-    <body>
+    <body> 
+        <jsp:include page="/view/common/header.jsp"/>
         <main class="main">
-            <jsp:include page="/view/common/header.jsp"/>
             <div class="page-header">
                 <div class="container d-flex flex-column align-items-center">
                     <nav aria-label="breadcrumb" class="breadcrumb-nav">
@@ -118,13 +118,12 @@
                     </div>
                 </div>
             </div>
-            <jsp:include page="/view/common/footer.jsp"/>
-
         </main>
+        <jsp:include page="/view/common/footer.jsp"/>
     </body>
     <!-- End .main -->
 
-    <  <!--loading-->
+    <!--loading-->
     <jsp:include page="/view/common/loading.jsp"/> 
 
     <!-- Plugins JS File -->

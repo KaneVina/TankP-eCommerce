@@ -2,14 +2,14 @@ package model;
 
 public class Product {
 
-       private int id;
+    private int id;
     private String name;
-    private String image;       
+    private String image;
     private int quantity;
-    private double new_price;    
-    private double old_price;    
+    private double new_price;
+    private double old_price;
     private String description;
-    private int categoryId; 
+    private int categoryId;
 
     public Product() {
     }
@@ -24,6 +24,22 @@ public class Product {
         this.description = description;
         this.categoryId = categoryId;
     }
+    
+    private Product(ProductBuilder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.image = builder.image;
+        this.quantity = builder.quantity;
+        this.new_price = builder.new_price;
+        this.old_price = builder.old_price;
+        this.description = builder.description;
+        this.categoryId = builder.categoryId;
+    }
+
+    public static ProductBuilder builder() {
+        return new ProductBuilder();
+    }
+
 
     public int getId() {
         return id;
@@ -64,12 +80,20 @@ public class Product {
     public void setNew_price(float new_price) {
         this.new_price = new_price;
     }
+    
+    public void setNew_price(double new_price) {
+        this.new_price = new_price;
+    }
 
     public double getOld_price() {
         return old_price;
     }
 
     public void setOld_price(float old_price) {
+        this.old_price = old_price;
+    }
+    
+    public void setOld_price(double old_price) {
         this.old_price = old_price;
     }
 
@@ -93,6 +117,33 @@ public class Product {
     public String toString() {
         return "Product{" + "id=" + id + ", name=" + name + ", image=" + image + ", quantity=" + quantity + ", new_price=" + new_price + ", old_price=" + old_price + ", description=" + description + ", categoryId=" + categoryId + '}';
     }
-
     
+    //  Builder Pattern  ---
+    public static class ProductBuilder {
+        private int id;
+        private String name;
+        private String image;
+        private int quantity;
+        private double new_price;
+        private double old_price;
+        private String description;
+        private int categoryId;
+        
+        // Setter cho id, trả về ProductBuilder
+        public ProductBuilder id(int id) {
+            this.id = id;
+            return this;
+        }
+
+        // Setter cho name, trả về ProductBuilder
+        public ProductBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+        
+        // Phương thức build() để tạo ra đối tượng Product
+        public Product build() {
+            return new Product(this);
+        }
+    }
 }

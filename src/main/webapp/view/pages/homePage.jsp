@@ -18,7 +18,6 @@
 
         <!-- Plugins CSS File -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
-
         <!-- Main CSS File -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.min.css" />
         <link
@@ -177,7 +176,8 @@
                                 <div class="col-6 col-sm-4 col-md-3">
                                     <div class="product-default">
                                         <figure>
-                                            <a href="product.html">
+                                            <!--link tới detail-->
+                                            <a href="productDetail?id=${p.id}">
                                                 <img
                                                     src="${pageContext.request.contextPath}/assets/images/products/product-1.jpg"
                                                     width="280" height="280" alt="product"/>

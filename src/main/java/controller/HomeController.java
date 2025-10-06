@@ -15,7 +15,6 @@ import model.Product;
 import model.Category;
 
 public class HomeController extends HttpServlet {
-
     ProductDAO productDAO = new ProductDAO();
     CategoryDAO categoryDAO = new CategoryDAO();
 
@@ -47,14 +46,10 @@ public class HomeController extends HttpServlet {
         List<Category> rootCategories = new ArrayList<>(); // Danh mục cấp Cha
         List<Category> childCategories = new ArrayList<>(); // Danh mục cấp Con
 
-        // Vòng lặp để tách danh sách
+        // tách danh sách
         for (Category category : listCategory) {
-            // KIỂM TRA ĐIỀU KIỆN DANH MỤC CHA:
             if (category.getParentID() == null || category.getParentID() == 0) {
-
-                // LỖI ĐÃ XẢY RA Ở ĐÂY: PHẢI THÊM VÀO rootCategories
                 rootCategories.add(category);
-
             } else {
                 childCategories.add(category);
             }

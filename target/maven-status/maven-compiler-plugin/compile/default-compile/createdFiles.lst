@@ -1,9 +1,11 @@
 com\example\productapp\tankp\ecommerce\resources\JakartaEE10Resource.class
 controller\HomeController.class
+controller\ProductDetailController.class
 utils\GenericDAO.class
 model\Product.class
 model\Category.class
 dao\CategoryDAO.class
 com\example\productapp\tankp\ecommerce\JakartaRestConfiguration.class
+model\Product$ProductBuilder.class
 dao\ProductDAO.class
 utils\DBContext.class

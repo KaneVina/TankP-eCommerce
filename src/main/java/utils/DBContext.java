@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author ASUS
  */
 public class DBContext {
-    protected Connection conn = null;
+    protected Connection connection = null;
 
     public DBContext() {
         try {
@@ -26,9 +26,9 @@ public class DBContext {
                     + "user=sa;"
                     + "password=123456;"
                     + "encrypt=true;trustServerCertificate=true;";
-            conn = DriverManager.getConnection(dbURL);
-            if (conn != null) {
-                DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();
+            connection = DriverManager.getConnection(dbURL);
+            if (connection != null) {
+                DatabaseMetaData dm = (DatabaseMetaData) connection.getMetaData();
                 System.out.println("Driver name: " + dm.getDriverName());
                 System.out.println("Driver version: " + dm.getDriverVersion());
                 System.out.println("Product name: "
@@ -48,5 +48,8 @@ public class DBContext {
     public static void main(String[] args) {
         DBContext db = new DBContext();
     }
-  
+    // GenericDAO có thể lấy Connection
+    protected Connection getConnection() {
+        return connection;
+    }
 }

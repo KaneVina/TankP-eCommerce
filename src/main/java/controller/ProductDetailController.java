@@ -1,17 +1,20 @@
 package controller;
 
 import dao.ProductDAO;
+import dao.CategoryDAO; // Thêm import CategoryDAO
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Product;
+import model.Category;
 
 public class ProductDetailController extends HttpServlet {
 
     // Khởi tạo đối tượng DAO để tương tác với cơ sở dữ liệu
     private final ProductDAO productDAO = new ProductDAO();
+    private final CategoryDAO categoryDAO = new CategoryDAO();
 
     // Khai báo hằng số cho đường dẫn trang lỗi và trang chi tiết sản phẩm
     private static final String ERROR_PAGE = "view/pages/errorPage.jsp";
@@ -22,11 +25,6 @@ public class ProductDetailController extends HttpServlet {
             throws ServletException, IOException {
 
         String idParam = request.getParameter("id");
-
-        // --- BỔ SUNG DEBUGGING START ---
-        System.out.println("--- PRODUCT DETAIL DEBUG ---");
-        System.out.println("DEBUG: Nhận tham số ID (idParam): " + idParam);
-        // --- BỔ SUNG DEBUGGING END ---
 
         // 1. Xử lý lỗi: Thiếu tham số ID (HTTP 400 Bad Request)
         if (idParam == null || idParam.isEmpty()) {
@@ -56,14 +54,23 @@ public class ProductDetailController extends HttpServlet {
                 return;
             }
 
-            //  Product vào request scope và chuyển hướng
+            // thông tin Category 
+            Category categoryFound = null;
+            if (productFoundById.getCategoryId() != 0) {
+                Category tempCategory = new Category();
+                // Lấy Category ID từ đối tượng Product
+                tempCategory.setId(productFoundById.getCategoryId());
+                // Tìm đối tượng Category bằng DAO
+                categoryFound = categoryDAO.findById(tempCategory);
+            }
+            // Thành công: Đặt đối tượng Product và Category vào request scope
             request.setAttribute("product", productFoundById);
+            request.setAttribute("category", categoryFound); // Đặt Category vào request scope
+
             request.getRequestDispatcher(PRODUCT_DETAIL_PAGE).forward(request, response);
 
         } catch (NumberFormatException e) {
             // 3. Xử lý lỗi: ID không phải là số nguyên (HTTP 400 Bad Request)
-            System.err.println("NumberFormatException caught: Tham số ID không phải là số nguyên: " + idParam + ". Lỗi: " + e.getMessage()); // Ghi log lỗi
-
             request.setAttribute("errorCode", 400);
             request.setAttribute("errorMessage", "Tham số ID sản phẩm không hợp lệ (phải là số nguyên).");
             request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
@@ -75,4 +82,5 @@ public class ProductDetailController extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
     }
+
 }

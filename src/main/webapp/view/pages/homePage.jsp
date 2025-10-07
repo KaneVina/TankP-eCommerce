@@ -16,15 +16,12 @@
         <meta name="description" content="TankP eCommerce" />
         <meta name="author" content="SW-THEMES" />
 
-        <!-- Plugins CSS File -->
+        <!-- CSS File -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
-        <!-- Main CSS File -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.min.css" />
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"
-            />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"/>
+        <!-- favicon -->
+        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logo/logoWBN.png">
     </head>
 
     <body>

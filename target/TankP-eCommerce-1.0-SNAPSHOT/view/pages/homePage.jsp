@@ -173,7 +173,6 @@
                                 <div class="col-6 col-sm-4 col-md-3">
                                     <div class="product-default">
                                         <figure>
-                                            <!--link tới detail-->
                                             <a href="productDetail?id=${p.id}">
                                                 <img
                                                     src="${pageContext.request.contextPath}/assets/images/products/product-1.jpg"
@@ -187,10 +186,29 @@
                                         <div class="product-details">
                                             <div class="category-wrap">
                                                 <div class="category-list">
-                                                    <a href="category.html" class="product-category">category</a>
+                                                    <%-- Khởi tạo biến categoryName để tìm kiếm --%>
+                                                    <c:set var="categoryName" value="N/A"/>
+
+                                                    <%-- 1. Tìm kiếm trong danh sách danh mục Cấp Cha --%>
+                                                    <c:forEach var="cat" items="${rootCategories}">
+                                                        <c:if test="${cat.id == p.categoryId}">
+                                                            <c:set var="categoryName" value="${cat.name}"/>
+                                                        </c:if>
+                                                    </c:forEach>
+
+                                                    <%-- 2. Tìm kiếm trong danh sách danh mục Cấp Con --%>
+                                                    <c:forEach var="cat" items="${childCategories}">
+                                                        <c:if test="${cat.id == p.categoryId}">
+                                                            <c:set var="categoryName" value="${cat.name}"/>
+                                                        </c:if>
+                                                    </c:forEach>
+
+                                                    <%-- Hiển thị tên và tạo link lọc theo danh mục --%>
+                                                    <a href="home?search=category&categoryId=${p.categoryId}" class="product-category">
+                                                        ${categoryName}
+                                                    </a>
                                                 </div>
                                             </div>
-
                                             <h3 class="product-title">
                                                 <a href="product.html">${p.name}</a>
                                             </h3>
@@ -217,7 +235,7 @@
                                 </div>
                             </c:forEach>
                         </div>
-                        <!-- End .row -->
+                        <!-- Hết sản phẩm-->
 
                         <nav class="toolbox toolbox-pagination">
                             <div class="toolbox-item toolbox-show">
@@ -292,18 +310,14 @@
                                                     <%-- CẤP CON: Dùng ID động khớp với Cấp Cha --%>
                                                     <div class="collapse show" id="widget-category-${rootCat.id}">
                                                         <ul class="cat-sublist">
-
                                                             <c:forEach var="childCat" items="${childCategories}">
-
                                                                 <%-- KIỂM TRA MỐI QUAN HỆ --%>
                                                                 <c:if test="${childCat.parentID == rootCat.id}">
-
                                                                     <li>
-                                                                        <a href="category?id=${childCat.id}">
+                                                                        <a href="home?search=category&categoryId=${childCat.id}">
                                                                             ${childCat.name}
                                                                         </a>
                                                                     </li>
-
                                                                 </c:if>
                                                             </c:forEach>
                                                         </ul>

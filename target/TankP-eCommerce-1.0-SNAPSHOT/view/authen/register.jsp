@@ -23,6 +23,8 @@
             type="text/css"
             href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"
             />
+          <!-- favicon -->
+        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logo/logoWBN.png">
         <style>
             .form-control-custom {
                 width: 100%;

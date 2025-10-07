@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,14 +33,14 @@
                                     <li class="breadcrumb-item"><a href="#">Shop</a></li>
                                     <li class="breadcrumb-item"><a href="#">Products</a></li>
                                     <li class="breadcrumb-item">
-                                        <a href="#">Men Black Sports Shoes</a>
+                                        <a href="#">${product.name}</a>
                                     </li>
                                 </ol>
                             </nav>
 
                             <div class="product-single-container product-single-default">
                                 <div class="cart-message d-none">
-                                    <strong class="single-cart-notice">“Men Black Sports Shoes”</strong>
+                                    <strong class="single-cart-notice">“${product.name}”</strong>
                                     <span>has been added to your cart.</span>
                                 </div>
 
@@ -150,7 +150,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-7 col-md-6 product-single-details">
-                                        <h1 class="product-title">Men Black Sports Shoes</h1>
+                                        <h1 class="product-title">${product.name}
+                                        </h1>
 
                                         <div class="product-nav">
                                             <div class="product-prev">
@@ -209,11 +210,7 @@
                                         </div>
                                         <div class="product-desc">
                                             <p>
-                                                Pellentesque habitant morbi tristique senectus et netus et
-                                                malesuada fames ac turpis egestas. Vestibulum tortor quam,
-                                                feugiat vitae, ultricies eget, tempor sit amet, ante. Donec
-                                                eu libero sit amet quam egestas semper. Aenean ultricies mi
-                                                vitae est. Mauris placerat eleifend leo.
+                                               ${product.description}
                                             </p>
                                         </div>
                                         <ul class="single-info-list">
@@ -221,7 +218,7 @@
 
                                             <li>
                                                 CATEGORY:
-                                                <strong><a href="#" class="product-category">SHOES</a></strong>
+                                                <strong><a href="#" class="product-category">description</a></strong>
                                             </li>
                                         </ul>
 
@@ -1185,9 +1182,9 @@
                                         </figure>
 
                                         <div class="product-details">
-                                            <h3 class="product-title">
+                                           <h3 class="product-title">
                                                 <a href="product.html">Black Leather Handbag</a>
-                                            </h3>
+                                            </h3> 
 
                                             <div class="ratings-container">
                                                 <div class="product-ratings">

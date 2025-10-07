@@ -6,9 +6,12 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
-        <title>404 Error</title>
+        
+        <title>TankP</title>
+        
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.min.css" />
+        <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />--> 
         <link
             rel="stylesheet"
             type="text/css"
@@ -46,12 +49,11 @@
         padding: 20px;
         position: relative; 
     }
-        
+
     .error-content h1 {
         font-size: 150px; 
         color: #0088cc; 
         font-weight: 700;
-        /* Giữ 404 sát mép trên ảnh */
         margin-bottom: -120px; 
         z-index: 10; 
     }
@@ -70,11 +72,7 @@
         position: absolute; 
         left: 50%; 
         transform: translateX(-50%); 
-        
-        /* Đặt vị trí theo chiều dọc (từ 0% đến 100% của .error-content) */
-        /* 75% sẽ đặt nó ở 3/4 chiều cao của khung lỗi, tức là gần phía dưới ảnh */
         top: 68%; 
-        
         z-index: 15; 
         color: #333; 
         text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8); 
@@ -113,24 +111,45 @@
         transition: background-color 0.3s;
         z-index: 20; 
     }
-    
+        
     .error-content > a.btn-primary:hover { 
         background: #0077b3; 
     }
-</style>
+    </style>
 
     <body>
         <jsp:include page="../common/header.jsp" />
         <main>
             <div class="error-content"> 
-                <h1 class="error-h1">404</h1>
+                
+                <h1 class="error-h1">
+                    <c:choose>
+                        <c:when test="${requestScope.errorCode != null}">${requestScope.errorCode}</c:when>
+                        <c:otherwise>ERROR</c:otherwise>
+                    </c:choose>
+                </h1>
+                
                 <img src="${pageContext.request.contextPath}/assets/gif/error.gif" alt="error" />
+                
                 <div class="error-text">
-                    <h2>Look like you're lost</h2>
-                    <p>the page you are looking for not available</p>
+                    <h2>
+                        <c:choose>
+                            <c:when test="${requestScope.errorCode == 404}">Page Not Found!</c:when>
+                            <c:when test="${requestScope.errorCode == 400}">Invalid Request!</c:when>
+                            <c:otherwise>An Error Has Occurred!</c:otherwise>
+                        </c:choose>
+                    </h2>
+                    
+                    <p>
+                        <c:choose>
+                            <c:when test="${requestScope.errorMessage != null}">${requestScope.errorMessage}</c:when>
+                            <c:otherwise>We’re sorry, the content you’re looking for is currently unavailable..</c:otherwise>
+                        </c:choose>
+                    </p>
                 </div>
+                
                 <a href="${pageContext.request.contextPath}/home" class="btn btn-primary">
-                    Go To Home
+                   Go to Home
                 </a>
 
             </div>

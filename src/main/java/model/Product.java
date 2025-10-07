@@ -6,15 +6,15 @@ public class Product {
     private String name;
     private String image;
     private int quantity;
-    private double new_price;
-    private double old_price;
+    private double new_price; 
+    private double old_price; 
     private String description;
     private int categoryId;
 
     public Product() {
     }
 
-    public Product(int id, String name, String image, int quantity, float new_price, float old_price, String description, int categoryId) {
+    public Product(int id, String name, String image, int quantity, double new_price, double old_price, String description, int categoryId) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -77,10 +77,6 @@ public class Product {
         return new_price;
     }
 
-    public void setNew_price(float new_price) {
-        this.new_price = new_price;
-    }
-    
     public void setNew_price(double new_price) {
         this.new_price = new_price;
     }
@@ -89,10 +85,6 @@ public class Product {
         return old_price;
     }
 
-    public void setOld_price(float old_price) {
-        this.old_price = old_price;
-    }
-    
     public void setOld_price(double old_price) {
         this.old_price = old_price;
     }
@@ -141,6 +133,42 @@ public class Product {
             return this;
         }
         
+        // Setter cho image, trả về ProductBuilder
+        public ProductBuilder image(String image) {
+            this.image = image;
+            return this;
+        }
+        
+        // Setter cho quantity, trả về ProductBuilder
+        public ProductBuilder quantity(int quantity) {
+            this.quantity = quantity;
+            return this;
+        }
+        
+        // Setter cho new_price, trả về ProductBuilder
+        public ProductBuilder new_price(double new_price) {
+            this.new_price = new_price;
+            return this;
+        }
+        
+        // Setter cho old_price, trả về ProductBuilder
+        public ProductBuilder old_price(double old_price) {
+            this.old_price = old_price;
+            return this;
+        }
+        
+        // Setter cho description, trả về ProductBuilder
+        public ProductBuilder description(String description) {
+            this.description = description;
+            return this;
+        }
+        
+        // Setter cho categoryId, trả về ProductBuilder
+        public ProductBuilder categoryId(int categoryId) {
+            this.categoryId = categoryId;
+            return this;
+        }
+
         // Phương thức build() để tạo ra đối tượng Product
         public Product build() {
             return new Product(this);

@@ -1,83 +1,78 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
 
 import dao.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Product;
 
-/**
- *
- * @author PHUC KHANG
- */
 public class ProductDetailController extends HttpServlet {
 
-    ProductDAO productDAO = new ProductDAO();
+    // Khởi tạo đối tượng DAO để tương tác với cơ sở dữ liệu
+    private final ProductDAO productDAO = new ProductDAO();
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProductDetailController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProductDetailController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+    // Khai báo hằng số cho đường dẫn trang lỗi và trang chi tiết sản phẩm
+    private static final String ERROR_PAGE = "view/pages/errorPage.jsp";
+    private static final String PRODUCT_DETAIL_PAGE = "view/pages/productDetail.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //get ve id cua product
-        int id = Integer.parseInt(request.getParameter("id"));
-        Product product = Product.builder()
-                .id(id)
-                .build();
+        String idParam = request.getParameter("id");
 
-        //lay product tu database
-        Product productFoundById = productDAO.findById(product);
+        // --- BỔ SUNG DEBUGGING START ---
+        System.out.println("--- PRODUCT DETAIL DEBUG ---");
+        System.out.println("DEBUG: Nhận tham số ID (idParam): " + idParam);
+        // --- BỔ SUNG DEBUGGING END ---
 
-        //set product vao request va chuyen sang trang product-details.jsp
-        request.setAttribute("product", productFoundById);
-        request.getRequestDispatcher("view/pages/productDetail.jsp").forward(request, response);
+        // 1. Xử lý lỗi: Thiếu tham số ID (HTTP 400 Bad Request)
+        if (idParam == null || idParam.isEmpty()) {
+            request.setAttribute("errorCode", 400);
+            request.setAttribute("errorMessage", "Yêu cầu không hợp lệ. Thiếu tham số ID sản phẩm.");
+            request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
+            return;
+        }
+
+        try {
+            // Chuyển đổi ID từ String sang int.
+            int id = Integer.parseInt(idParam);
+
+            // Khởi tạo đối tượng Product với ID để tìm kiếm
+            Product product = Product.builder()
+                    .id(id)
+                    .build();
+
+            // Lấy sản phẩm từ cơ sở dữ liệu
+            Product productFoundById = productDAO.findById(product);
+
+            // 2. Xử lý lỗi: KHÔNG TÌM THẤY SẢN PHẨM (HTTP 404 Not Found)
+            if (productFoundById == null) {
+                request.setAttribute("errorCode", 404);
+                request.setAttribute("errorMessage", "Không tìm thấy sản phẩm với ID: " + id + ".");
+                request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
+                return;
+            }
+
+            //  Product vào request scope và chuyển hướng
+            request.setAttribute("product", productFoundById);
+            request.getRequestDispatcher(PRODUCT_DETAIL_PAGE).forward(request, response);
+
+        } catch (NumberFormatException e) {
+            // 3. Xử lý lỗi: ID không phải là số nguyên (HTTP 400 Bad Request)
+            System.err.println("NumberFormatException caught: Tham số ID không phải là số nguyên: " + idParam + ". Lỗi: " + e.getMessage()); // Ghi log lỗi
+
+            request.setAttribute("errorCode", 400);
+            request.setAttribute("errorMessage", "Tham số ID sản phẩm không hợp lệ (phải là số nguyên).");
+            request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
+        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doGet(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

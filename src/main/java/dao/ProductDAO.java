@@ -25,7 +25,9 @@ public class ProductDAO extends GenericDAO<Product> {
                 + " , [name]"
                 + " , [image]"
                 + " , [quantity]"
-                + " , [price]"
+                // SỬA LỖI QUAN TRỌNG: Đảm bảo tên cột khớp với Model
+                + " , [new_price]" // Lấy new_price (không phải price)
+                + " , [old_price]" // Thêm old_price
                 + " , [description]"
                 + " , [categoryId]"
                 + " FROM [dbo].[Product]"
@@ -35,10 +37,8 @@ public class ProductDAO extends GenericDAO<Product> {
         Map<String, Object> parameterMap = new LinkedHashMap<>();
         parameterMap.put("id", product.getId());
 
-        // Thực hiện truy vấn: SỬA LỖI CÚ PHÁP GỌI PHƯƠNG THỨC
         List<Product> list = queryGenericDAO(Product.class, sql, parameterMap);
 
-        // Logic kiểm tra và trả về: SỬA LỖI CÚ PHÁP list.get()
         return list.isEmpty() ? null : list.get(0);
     }
 }

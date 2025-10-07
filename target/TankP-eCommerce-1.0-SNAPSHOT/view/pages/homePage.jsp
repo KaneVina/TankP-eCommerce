@@ -206,8 +206,8 @@
                                             </div>
 
                                             <div class="price-box">
-                                                <span class="old-price">$90.00</span>
-                                                <span class="product-price">$70.00</span>
+                                                <span class="old-price">${p.old_price}</span>
+                                                <span class="product-price">${p.new_price}</span>
                                             </div>
 
                                             <div class="product-action">
@@ -283,13 +283,11 @@
                                             <c:forEach var="rootCat" items="${rootCategories}">
 
                                                 <li>
-                                                    <%-- CẤP CHA: Dùng ID động --%>
                                                     <a href="#widget-category-${rootCat.id}" 
                                                        data-toggle="collapse" 
                                                        role="button" 
                                                        aria-expanded="true" 
                                                        aria-controls="widget-category-${rootCat.id}">
-
                                                         ${rootCat.name}
                                                         <span class="toggle"></span>
                                                     </a>

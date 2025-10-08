@@ -14,19 +14,20 @@ import model.Product;
 import model.Category;
 
 public class HomeController extends HttpServlet {
+
     ProductDAO productDAO = new ProductDAO();
     CategoryDAO categoryDAO = new CategoryDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         // 1. GỌI HÀM LỌC: Lấy list sản phẩm đã được lọc/tìm kiếm
         List<Product> searchResultProduct = findProductDoGet(request);
 
         // Lấy kết quả tìm kiếm/lọc gán vào listProduct (KHÔNG KHAI BÁO LẠI)
-        List<Product> listProduct = searchResultProduct; 
-        
+        List<Product> listProduct = searchResultProduct;
+
         // 2. Lấy list Category
         List<Category> listCategory = categoryDAO.findAll();
 
@@ -73,7 +74,6 @@ public class HomeController extends HttpServlet {
     }
 
     private List<Product> findProductDoGet(HttpServletRequest request) {
-        // Fix Lỗi CÚ PHÁP: Bỏ "name:"
         //get ve search
         String actionSearch = request.getParameter("search") == null
                 ? "default"
@@ -84,9 +84,14 @@ public class HomeController extends HttpServlet {
         switch (actionSearch) {
             case "category":
                 // Fix Lỗi CÚ PHÁP: Bỏ "name:"
-                String categoryId = request.getParameter("categoryId"); 
+                String categoryId = request.getParameter("categoryId");
                 listProduct = productDAO.findByCategory(categoryId);
                 break;
+            case "searchByName":
+                String keyword = request.getParameter("keyword");
+                listProduct = productDAO.findByName(keyword);
+                break;
+
             default:
                 listProduct = productDAO.findAll();
         }

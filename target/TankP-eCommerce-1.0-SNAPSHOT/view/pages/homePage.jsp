@@ -203,7 +203,7 @@
                                                         </c:if>
                                                     </c:forEach>
 
-                                                    <%-- Hiển thị tên và tạo link lọc theo danh mục --%>
+                                                    <%-- Hiển thị tên và bấm vào tạo link lọc theo danh mục, chỉnh nếu sửa chổ controller --%>
                                                     <a href="home?search=category&categoryId=${p.categoryId}" class="product-category">
                                                         ${categoryName}
                                                     </a>
@@ -742,36 +742,6 @@
 
     <!-- mobile-menu-container -->
     <jsp:include page="../common/mobile-menu.jsp"></jsp:include>
-
-        <div class="sticky-navbar">
-            <div class="sticky-info">
-                <a href="#"> <i class="icon-home"></i>Home </a>
-            </div>
-            <div class="sticky-info">
-                <a href="#" class="">
-                    <i class="icon-bars"></i>Shop
-                </a>
-            </div>
-            <div class="sticky-info">
-                <a href="wishlist.html" class="">
-                    <i class="icon-wishlist-2"></i>Wishlist
-                </a>
-            </div>
-            <div class="sticky-info">
-                <a href="login.html" class=""> <i class="icon-user-2"></i>Account </a>
-            </div>
-            <div class="sticky-info">
-                <a href="cart.html" class="">
-                    <i class="icon-shopping-cart position-relative">
-                        <span class="cart-count badge-circle">3</span> </i
-                    >Cart
-                </a>
-            </div>
-        </div>
-
-        <a id="scroll-top" href="#top" title="Top" role="button"
-           ><i class="icon-angle-up"></i
-            ></a>
 
         <!-- Plugins JS File -->
         <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>

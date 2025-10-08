@@ -63,4 +63,13 @@ public class ProductDAO extends GenericDAO<Product> {
         List<Product> list = queryGenericDAO(Product.class, sql, parameterMap);
         return list;
     }
+
+    public List<Product> findByName(String keyword) {
+        String sql = "SELECT * FROM [product]\n"
+                + "where [name] like ?";
+        parameterMap = new LinkedHashMap<>();
+        parameterMap.put("name", "%" + keyword + "%");
+        return queryGenericDAO(Product.class, sql, parameterMap);
+
+    }
 }

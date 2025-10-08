@@ -11,7 +11,6 @@
         
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.min.css" />
-        <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />--> 
         <link
             rel="stylesheet"
             type="text/css"

@@ -8,7 +8,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import model.Product;
 import model.Category;
@@ -31,6 +30,10 @@ public class HomeController extends HttpServlet {
         // 2. Lấy list Category
         List<Category> listCategory = categoryDAO.findAll();
 
+        // list trống khởi tạo list rổng tránh NullPointerException
+        if (listCategory == null) {
+            listCategory = new ArrayList<>();
+        }
         List<Category> rootCategories = new ArrayList<>(); // Danh mục cấp Cha
         List<Category> childCategories = new ArrayList<>(); // Danh mục cấp Con
 
@@ -43,14 +46,10 @@ public class HomeController extends HttpServlet {
                 childCategories.add(category);
             }
         }
-
-        // 3. Lấy đối tượng Session
-        HttpSession session = request.getSession();
-
-        // 4. Set các list vào Session
-        session.setAttribute("listProduct", listProduct);
-        session.setAttribute("rootCategories", rootCategories);
-        session.setAttribute("childCategories", childCategories);
+        // 4. Set các list vào Request Scope
+        request.setAttribute("listProduct", listProduct);
+        request.setAttribute("rootCategories", rootCategories);
+        request.setAttribute("childCategories", childCategories);
 
         // 5. Forward sang trang JSP
         request.getRequestDispatcher("view/pages/homePage.jsp").forward(request, response);

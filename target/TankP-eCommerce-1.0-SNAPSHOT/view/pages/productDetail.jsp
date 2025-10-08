@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.min.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"/>
-         <!-- favicon -->
+        <!-- favicon -->
         <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logo/logoWBN.png">
     </head>
 
@@ -34,6 +34,8 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Shop</a></li>
                                     <li class="breadcrumb-item"><a href="#">Products</a></li>
+                                    <li class="breadcrumb-item"><a href="#">${category.name}</a></li>
+
                                     <li class="breadcrumb-item">
                                         <a href="#">${product.name}</a>
                                 </li>
@@ -290,11 +292,11 @@
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="product-tab-desc" data-toggle="tab" href="#product-desc-content" role="tab" aria-controls="product-desc-content" aria-selected="true"
-                                        >Return, Refund and Exchange Policy</a>
+                                       >Return, Refund and Exchange Policy</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="product-tab-tags" data-toggle="tab" href="#product-tags-content" role="tab" aria-controls="product-tags-content" aria-selected="false"
-                                        >Additional Information</a>
+                                       >Additional Information</a>
                                 </li>
                             </ul>
 

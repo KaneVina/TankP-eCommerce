@@ -10,15 +10,14 @@
         <title>TankP</title>
 
         <meta name="keywords" content="HTML5 Template" />
-        <meta name="description" content="Tank - Bootstrap eCommerce Template" />
+        <meta name="description" content="Tank eCommerce Template" />
         <meta name="author" content="SW-THEMES" />
 
         <!-- Plugins CSS File -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.min.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"/>
-         <!-- favicon -->
+        <!-- favicon -->
         <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logo/logoWBN.png">
     </head>
 
@@ -53,7 +52,7 @@
                                 <form class="mb-0" action="#">
                                     <p>
                                         Forgot your password? Enter your registered email address
-                                        below, and we’ll send you OTP to securely reset your
+                                        below, and TankP will send you OTP to securely reset your
                                         account.
                                     </p>
                                     <div class="form-group mb-0">
@@ -71,12 +70,13 @@
 
                                     <div class="form-footer mb-0">
                                         <a href="login.html">Click here to login</a>
-                                        <a
-                                            href="Verify OTP.html"
-                                            class="btn btn-md btn-primary form-footer-right font-weight-normal text-transform-none mr-0"
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary btn-sm form-footer-right font-weight-normal text-transform-none mr-0"
                                             >
                                             Send OTP
-                                        </a>
+                                        </button>
+
                                     </div>
                                 </form>
                             </div>

@@ -15,10 +15,9 @@
 
         <!-- Plugins CSS File -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.min.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"/>
-          <!-- favicon -->
+        <!-- favicon -->
         <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logo/logoWBN.png">
     </head>
     <style>
@@ -120,25 +119,22 @@
             </div>
         </main>
         <jsp:include page="/view/common/footer.jsp"/>
+        <!-- End .main -->
+
+        <!--loading-->
+        <jsp:include page="/view/common/loading.jsp"/> 
+
+        <!-- Plugins JS File -->
+        <script
+            data-cfasync="false"
+            src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+        ></script>
+        <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/plugins.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/nouislider.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/main.min.js"></script>
     </body>
-    <!-- End .main -->
-
-    <!--loading-->
-    <jsp:include page="/view/common/loading.jsp"/> 
-
-    <!-- Plugins JS File -->
-    <script
-        data-cfasync="false"
-        src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-    ></script>
-    <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/js/plugins.min.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/js/nouislider.min.js"></script>
-
-    <!-- Main JS File -->
-    <script src="${pageContext.request.contextPath}/assets/js/main.min.js"></script>
-</body>
 </html>
 
 F

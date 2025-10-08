@@ -43,12 +43,9 @@
         left: 0;
         width: 100%;
         height: 100%;
-        /* Màu viền nền tĩnh: Rất nhạt, gần như trắng */
         border: 5px solid rgba(0, 0, 0, 0.1); 
-        /* Màu viền quay: Màu đen */
         border-top: 5px solid #000000;  
         border-radius: 50%;
-        /* Thay đổi animation để chạy màu */
         animation: spin 1.2s linear infinite, spinner-color 1.2s ease-in-out infinite; 
         z-index: 1;
     }
@@ -61,7 +58,7 @@
     /* Animation chuyển màu cho vòng tròn */
     @keyframes spinner-color {
         0% { border-top-color: #000000; }
-        50% { border-top-color: #0088CC; } /* Chuyển sang màu xanh ở giữa chu kỳ */
+        50% { border-top-color: #0088CC; } 
         100% { border-top-color: #000000; }
     }
 
@@ -76,11 +73,9 @@
         width: 10px;
         height: 10px;
         margin: 0 5px;
-        /* Màu tĩnh ban đầu: Đen */
         background-color: #000000; 
         border-radius: 50%;
         opacity: 0;
-        /* Thêm animation màu sắc */
         animation: bounce 1.2s infinite ease-in-out, dot-color 1.2s infinite ease-in-out; 
         animation-delay: calc(0.1s * var(--i)); 
     }
@@ -94,7 +89,7 @@
     @keyframes bounce {
         0%, 100% { 
             transform: scale(0);
-            opacity: 0.5; /* Giữ opacity ở mức nhìn thấy để hiệu ứng mượt hơn */
+            opacity: 0.5;
         }
         50% { 
             transform: scale(1);

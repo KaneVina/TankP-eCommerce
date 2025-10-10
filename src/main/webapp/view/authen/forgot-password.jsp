@@ -86,24 +86,23 @@
             </div>
         </main>
         <jsp:include page="/view/common/footer.jsp"/>
+        <!-- End .main -->
+
+        <!--loading-->
+        <jsp:include page="/view/common/loading.jsp"/> 
+
+        <!-- Plugins JS File -->
+        <script
+            data-cfasync="false"
+            src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+        ></script>
+        <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/plugins.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/nouislider.min.js"></script>
+
+        <!-- Main JS File -->
+        <script src="${pageContext.request.contextPath}/assets/js/main.min.js"></script>
     </body>
-    <!-- End .main -->
-
-    <!--loading-->
-    <jsp:include page="/view/common/loading.jsp"/> 
-
-    <!-- Plugins JS File -->
-    <script
-        data-cfasync="false"
-        src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-    ></script>
-    <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/js/plugins.min.js"></script>
-    <script src="${pageContext.request.contextPath}/assets/js/nouislider.min.js"></script>
-
-    <!-- Main JS File -->
-    <script src="${pageContext.request.contextPath}/assets/js/main.min.js"></script>
-</body>
 </html>
 

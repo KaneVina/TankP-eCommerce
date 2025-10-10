@@ -136,5 +136,3 @@
         <script src="${pageContext.request.contextPath}/assets/js/main.min.js"></script>
     </body>
 </html>
-
-F

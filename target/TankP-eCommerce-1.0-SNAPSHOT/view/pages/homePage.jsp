@@ -259,7 +259,7 @@
                                         <div class="product-action">
                                             <a href="wishlist.html" class="btn-icon-wish" title="wishlist"><i class="icon-heart"></i></a>
                                             <a href="product.html" class="btn-icon btn-add-cart"><i class="fa fa-arrow-right"></i><span>SELECT OPTIONS</span></a>
-                                            <a href="#" class="btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
+                                            <a href="${pageContext.request.contextPath}/view/pages/productDetail.jsp" class="btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
                                         </div>
                                     </div>
                                 </div>

@@ -23,7 +23,7 @@
             type="text/css"
             href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"
             />
-          <!-- favicon -->
+        <!-- favicon -->
         <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logo/logoWBN.png">
         <style>
             .form-control-custom {
@@ -62,7 +62,7 @@
     </head>
 
     <body>
-       <jsp:include page="/view/common/header.jsp"/>
+        <jsp:include page="/view/common/header.jsp"/>
         <main class="main">
             <div class="page-header">
                 <div class="container d-flex flex-column align-items-center">

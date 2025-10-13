@@ -1,13 +1,5 @@
-<%-- 
-    Document   : mobile-menu.jsp
-    Created on : Oct 2, 2025, 9:09:52 AM
-    Author     : PHUC KHANG
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="mobile-menu-overlay"></div>
-    <!-- End .mobil-menu-overlay -->
-
     <div class="mobile-menu-container">
       <div class="mobile-menu-wrapper">
         <span class="mobile-menu-close"><i class="fa fa-times"></i></span>

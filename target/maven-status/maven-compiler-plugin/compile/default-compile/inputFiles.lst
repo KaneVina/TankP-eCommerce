@@ -1,10 +1,10 @@
-C:\Users\PHUC KHANG\Documents\NetBeansProjects\TankP-eCommerce\src\main\java\model\Product.java
-C:\Users\PHUC KHANG\Documents\NetBeansProjects\TankP-eCommerce\src\main\java\controller\ProductDetailController.java
-C:\Users\PHUC KHANG\Documents\NetBeansProjects\TankP-eCommerce\src\main\java\dao\ProductDAO.java
-C:\Users\PHUC KHANG\Documents\NetBeansProjects\TankP-eCommerce\src\main\java\utils\GenericDAO.java
-C:\Users\PHUC KHANG\Documents\NetBeansProjects\TankP-eCommerce\src\main\java\controller\HomeController.java
-C:\Users\PHUC KHANG\Documents\NetBeansProjects\TankP-eCommerce\src\main\java\utils\DBContext.java
-C:\Users\PHUC KHANG\Documents\NetBeansProjects\TankP-eCommerce\src\main\java\dao\CategoryDAO.java
-C:\Users\PHUC KHANG\Documents\NetBeansProjects\TankP-eCommerce\src\main\java\com\example\productapp\tankp\ecommerce\resources\JakartaEE10Resource.java
-C:\Users\PHUC KHANG\Documents\NetBeansProjects\TankP-eCommerce\src\main\java\model\Category.java
-C:\Users\PHUC KHANG\Documents\NetBeansProjects\TankP-eCommerce\src\main\java\com\example\productapp\tankp\ecommerce\JakartaRestConfiguration.java
+D:\Project PRJ301 FA25\TankP-eCommerce\src\main\java\utils\DBContext.java
+D:\Project PRJ301 FA25\TankP-eCommerce\src\main\java\dao\ProductDAO.java
+D:\Project PRJ301 FA25\TankP-eCommerce\src\main\java\com\example\productapp\tankp\ecommerce\JakartaRestConfiguration.java
+D:\Project PRJ301 FA25\TankP-eCommerce\src\main\java\model\Product.java
+D:\Project PRJ301 FA25\TankP-eCommerce\src\main\java\com\example\productapp\tankp\ecommerce\resources\JakartaEE10Resource.java
+D:\Project PRJ301 FA25\TankP-eCommerce\src\main\java\controller\ProductDetailController.java
+D:\Project PRJ301 FA25\TankP-eCommerce\src\main\java\model\Category.java
+D:\Project PRJ301 FA25\TankP-eCommerce\src\main\java\utils\GenericDAO.java
+D:\Project PRJ301 FA25\TankP-eCommerce\src\main\java\controller\HomeController.java
+D:\Project PRJ301 FA25\TankP-eCommerce\src\main\java\dao\CategoryDAO.java

@@ -206,6 +206,9 @@
 
         <!--loading-->
         <jsp:include page="/view/common/loading.jsp"/> 
+        
+         <!-- mobile-menu-container -->
+        <jsp:include page="../common/mobile-menu.jsp"></jsp:include>
 
         <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>

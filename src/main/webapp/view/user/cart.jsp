@@ -54,123 +54,123 @@
                                                 <figure class="product-image-container">
                                                     <a href="product.html" class="product-image">
                                                         <img src="${pageContext.request.contextPath}/assets/images/products/product-4.jpg"
-                                                            alt="product"/>
-                                                    </a>
-                                                    <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
-                                                </figure>
-                                            </td>
-                                            <td class="product-col">
-                                                <h5 class="product-title">
-                                                    <a href="product.html">Men Watch</a>
-                                                </h5>
-                                            </td>
-                                            <td>$17.90</td>
-                                            <td>
-                                                <div class="product-single-qty">
-                                                    <input class="horizontal-quantity form-control" type="text"/>
-                                                </div>
-                                                <!-- End .product-single-qty -->
-                                            </td>
-                                            <td class="text-right">
-                                                <span class="subtotal-price">$17.90</span>
-                                            </td>
-                                        </tr>
+                                                         alt="product"/>
+                                                </a>
+                                                <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
+                                            </figure>
+                                        </td>
+                                        <td class="product-col">
+                                            <h5 class="product-title">
+                                                <a href="product.html">Men Watch</a>
+                                            </h5>
+                                        </td>
+                                        <td>$17.90</td>
+                                        <td>
+                                            <div class="product-single-qty">
+                                                <input class="horizontal-quantity form-control" type="text"/>
+                                            </div>
+                                            <!-- End .product-single-qty -->
+                                        </td>
+                                        <td class="text-right">
+                                            <span class="subtotal-price">$17.90</span>
+                                        </td>
+                                    </tr>
 
-                                        <tr class="product-row">
-                                            <td>
-                                                <figure class="product-image-container">
-                                                    <a href="product.html" class="product-image">
-                                                        <img src="${pageContext.request.contextPath}/assets/images/products/product-3.jpg" alt="product"/>
-                                                    </a>
+                                    <tr class="product-row">
+                                        <td>
+                                            <figure class="product-image-container">
+                                                <a href="product.html" class="product-image">
+                                                    <img src="${pageContext.request.contextPath}/assets/images/products/product-3.jpg" alt="product"/>
+                                                </a>
 
-                                                    <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
-                                                </figure>
-                                            </td>
-                                            <td class="product-col">
-                                                <h5 class="product-title">
-                                                    <a href="product.html">Men Watch</a>
-                                                </h5>
-                                            </td>
-                                            <td>$17.90</td>
-                                            <td>
-                                                <div class="product-single-qty">
-                                                    <input class="horizontal-quantity form-control" type="text"/>
-                                                </div>
-                                                <!-- End .product-single-qty -->
-                                            </td>
-                                            <td class="text-right">
-                                                <span class="subtotal-price">$17.90</span>
-                                            </td>
-                                        </tr>
+                                                <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
+                                            </figure>
+                                        </td>
+                                        <td class="product-col">
+                                            <h5 class="product-title">
+                                                <a href="product.html">Men Watch</a>
+                                            </h5>
+                                        </td>
+                                        <td>$17.90</td>
+                                        <td>
+                                            <div class="product-single-qty">
+                                                <input class="horizontal-quantity form-control" type="text"/>
+                                            </div>
+                                            <!-- End .product-single-qty -->
+                                        </td>
+                                        <td class="text-right">
+                                            <span class="subtotal-price">$17.90</span>
+                                        </td>
+                                    </tr>
 
-                                        <tr class="product-row">
-                                            <td>
-                                                <figure class="product-image-container">
-                                                    <a href="product.html" class="product-image">
-                                                        <img src="${pageContext.request.contextPath}/assets/images/products/product-6.jpg" alt="product"/>
-                                                    </a>
+                                    <tr class="product-row">
+                                        <td>
+                                            <figure class="product-image-container">
+                                                <a href="product.html" class="product-image">
+                                                    <img src="${pageContext.request.contextPath}/assets/images/products/product-6.jpg" alt="product"/>
+                                                </a>
 
-                                                    <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
-                                                </figure>
-                                            </td>
-                                            <td class="product-col">
-                                                <h5 class="product-title">
-                                                    <a href="product.html">Men Black Gentle Belt</a>
-                                                </h5>
-                                            </td>
-                                            <td>$17.90</td>
-                                            <td>
-                                                <div class="product-single-qty">
-                                                    <input
-                                                        class="horizontal-quantity form-control"
-                                                        type="text"
-                                                        />
-                                                </div>
-                                                <!-- End .product-single-qty -->
-                                            </td>
-                                            <td class="text-right">
-                                                <span class="subtotal-price">$17.90</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- End .cart-table-container -->
+                                                <a href="#" class="btn-remove icon-cancel" title="Remove Product"></a>
+                                            </figure>
+                                        </td>
+                                        <td class="product-col">
+                                            <h5 class="product-title">
+                                                <a href="product.html">Men Black Gentle Belt</a>
+                                            </h5>
+                                        </td>
+                                        <td>$17.90</td>
+                                        <td>
+                                            <div class="product-single-qty">
+                                                <input
+                                                    class="horizontal-quantity form-control"
+                                                    type="text"
+                                                    />
+                                            </div>
+                                            <!-- End .product-single-qty -->
+                                        </td>
+                                        <td class="text-right">
+                                            <span class="subtotal-price">$17.90</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- End .col-lg-8 -->
+                        <!-- End .cart-table-container -->
+                    </div>
+                    <!-- End .col-lg-8 -->
 
-                        <div class="col-lg-4">
-                            <div class="cart-summary">
-                                <h3>CART TOTALS</h3>
+                    <div class="col-lg-4">
+                        <div class="cart-summary">
+                            <h3>CART TOTALS</h3>
 
-                                <table class="table table-totals">
-                                    <tbody>
-                                        <tr>
-                                            <td>Product quantity</td>
-                                            <td>4</td>
-                                        </tr>
-                                    </tbody>
+                            <table class="table table-totals">
+                                <tbody>
+                                    <tr>
+                                        <td>Product quantity</td>
+                                        <td>4</td>
+                                    </tr>
+                                </tbody>
 
-                                    <tfoot>
-                                        <tr>
-                                            <td>Total</td>
-                                            <td>$17.90</td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                <tfoot>
+                                    <tr>
+                                        <td>Total</td>
+                                        <td>$17.90</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
 
-                                <div class="checkout-methods">
-                                    <a href="cart.html" class="btn btn-block btn-dark"
-                                       >Proceed to Checkout <i class="fa fa-arrow-right"></i
-                                        ></a>
-                                </div>
+                            <div class="checkout-methods">
+                                <a href="cart.html" class="btn btn-block btn-dark"
+                                   >Proceed to Checkout <i class="fa fa-arrow-right"></i
+                                    ></a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
+            </div>
+        </main>
 
-            <!-- Footer Start -->
+        <!-- Footer Start -->
         <jsp:include page="../common/footer.jsp"></jsp:include>
             <!--loading-->
         <jsp:include page="../common/loading.jsp"/> 
@@ -178,13 +178,11 @@
         <jsp:include page="../common/mobile-menu.jsp"></jsp:include>
 
             <!-- Plugins JS File -->
-            <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-            <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+        <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/plugins.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/nouislider.min.js"></script>
-
-        <!-- Main JS File -->
         <script src="${pageContext.request.contextPath}/assets/js/main.min.js"></script>
     </body>
 </html>

@@ -1,4 +1,3 @@
-abc.class
 controller\HomeController.class
 dao\CategoryDAO.class
 utils\DBContext.class
@@ -6,10 +5,8 @@ model\Order.class
 com\example\productapp\tankp\ecommerce\resources\JakartaEE10Resource.class
 controller\ProductDetailController.class
 utils\GenericDAO.class
-hahahah.class
 model\Product.class
 model\Category.class
-asdf.class
 com\example\productapp\tankp\ecommerce\JakartaRestConfiguration.class
 model\Product$ProductBuilder.class
 dao\ProductDAO.class

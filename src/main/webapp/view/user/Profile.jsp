@@ -72,7 +72,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" id="edit-tab" data-toggle="tab" href="#edit" role="tab" aria-controls="edit" aria-selected="false"
-                                        >Account details</a>
+                                       >Account details</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="login.html">Logout</a>
@@ -259,6 +259,7 @@
                             </div>
                             <!-- End .tab-pane -->
 
+                            <!--Account Detail - Nhan-->
                             <div class="tab-pane fade" id="edit" role="tabpanel">
                                 <h3 class="account-sub-title d-none d-md-block mt-0 pt-1 ml-1">
                                     <i class="icon-user-2 align-middle mr-3 pr-1"></i>Account Details
@@ -268,8 +269,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="acc-name"
-                                                           >First name <span class="required">*</span></label>
+                                                    <label for="acc-name">First name <span class="required">*</span></label>
                                                     <input
                                                         type="text"
                                                         class="form-control"
@@ -283,9 +283,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="acc-lastname"
-                                                           >Last name <span class="required">*</span></label
-                                                    >
+                                                    <label for="acc-lastname">Last name <span class="required">*</span></label>
                                                     <input
                                                         type="text"
                                                         class="form-control"
@@ -298,14 +296,12 @@
                                         </div>
 
                                         <div class="form-group mb-2">
-                                            <label for="acc-text"
-                                                   >Display name <span class="required">*</span></label
-                                            >
+                                            <label for="acc-username">Username <span class="required">*</span></label>
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                id="acc-text"
-                                                name="acc-text"
+                                                id="acc-username"
+                                                name="acc-username"
                                                 placeholder="Editor"
                                                 required
                                                 />
@@ -315,10 +311,40 @@
                                             </p>
                                         </div>
 
-                                        <div class="form-group mb-4">
-                                            <label for="acc-email"
-                                                   >Email address <span class="required">*</span></label
-                                            >
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="d-block">Gender</label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="acc-gender" id="gender-male" value="male">
+                                                        <label class="form-check-label" for="gender-male">Male</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="acc-gender" id="gender-female" value="female">
+                                                        <label class="form-check-label" for="gender-female">Female</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="acc-gender" id="gender-other" value="other">
+                                                        <label class="form-check-label" for="gender-other">Other</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="acc-dob">Date of Birth</label>
+                                                    <input
+                                                        type="date"
+                                                        class="form-control"
+                                                        id="acc-dob"
+                                                        name="acc-dob"
+                                                        />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-3">
+                                            <label for="acc-email">Email address <span class="required">*</span></label>
                                             <input
                                                 type="email"
                                                 class="form-control"
@@ -329,14 +355,34 @@
                                                 />
                                         </div>
 
+                                        <div class="row mb-4 align-items-end"> 
+
+                                            <div class="col-8">
+                                                <div class="form-group mb-0"> <label for="acc-phone">Phone Number (Optional)</label>
+                                                    <input
+                                                        type="tel"
+                                                        class="form-control"
+                                                        id="acc-phone"
+                                                        name="acc-phone"
+                                                        placeholder="e.g., 123-456-7890"
+                                                        />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-4">
+                                                <div class="form-group mb-0"> 
+                                                    <button type="submit" class="btn btn-dark btn-block mr-0">
+                                                        Save Profile
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="change-password">
                                             <h3 class="text-uppercase mb-2">Password Change</h3>
 
                                             <div class="form-group">
-                                                <label for="acc-password"
-                                                       >Current Password (leave blank to leave
-                                                    unchanged)</label
-                                                >
+                                                <label for="acc-password">Current Password (leave blank to leave unchanged)</label>
                                                 <input
                                                     type="password"
                                                     class="form-control"
@@ -346,9 +392,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="acc-password"
-                                                       >New Password (leave blank to leave unchanged)</label
-                                                >
+                                                <label for="acc-new-password">New Password (leave blank to leave unchanged)</label>
                                                 <input
                                                     type="password"
                                                     class="form-control"
@@ -358,7 +402,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="acc-password">Confirm New Password</label>
+                                                <label for="acc-confirm-password">Confirm New Password</label>
                                                 <input
                                                     type="password"
                                                     class="form-control"
@@ -376,7 +420,8 @@
                                     </form>
                                 </div>
                             </div>
-                            <!-- End .tab-pane -->
+                            <!--END Account Detail - Nhan-->
+
 
                             <div class="tab-pane fade" id="shipping" role="tabpanel">
                                 <div class="address account-content mt-0 pt-2">
@@ -484,7 +529,6 @@
         <jsp:include page="../common/mobile-menu.jsp"></jsp:include>
 
             <!-- Plugins JS File -->
-            <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
             <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/plugins.min.js"></script>

@@ -1,45 +1,52 @@
 package model;
 
+import java.util.List;
+
 public class Product {
 
     private int id;
     private String name;
-    private String image;
-    private int quantity;
-    private double new_price; 
-    private double old_price; 
+    private double newPrice;
+    private double oldPrice;
     private String description;
-    private int categoryId;
+    private int category_id;
+    
+    // CÁC TRƯỜNG TÍCH HỢP (Giữ nguyên)
+    private List<Gallery> galleries;
+    private List<ProductVariant> variants;
 
     public Product() {
     }
 
-    public Product(int id, String name, String image, int quantity, double new_price, double old_price, String description, int categoryId) {
+    // Constructor dùng cho mục đích cơ bản (nếu cần)
+    public Product(int id, String name, double newPrice, double oldPrice, String description, int category_id) {
         this.id = id;
         this.name = name;
-        this.image = image;
-        this.quantity = quantity;
-        this.new_price = new_price;
-        this.old_price = old_price;
+        this.newPrice = newPrice;
+        this.oldPrice = oldPrice;
         this.description = description;
-        this.categoryId = categoryId;
+        this.category_id = category_id;
     }
     
+    // Constructor cho Builder (Đã xóa image, quantity)
     private Product(ProductBuilder builder) {
         this.id = builder.id;
         this.name = builder.name;
-        this.image = builder.image;
-        this.quantity = builder.quantity;
-        this.new_price = builder.new_price;
-        this.old_price = builder.old_price;
+        this.newPrice = builder.newPrice;
+        this.oldPrice = builder.oldPrice;
         this.description = builder.description;
-        this.categoryId = builder.categoryId;
+        this.category_id = builder.category_id;
+        
+        this.galleries = builder.galleries;
+        this.variants = builder.variants;
     }
 
     public static ProductBuilder builder() {
         return new ProductBuilder();
     }
 
+
+    // Getters and Setters
 
     public int getId() {
         return id;
@@ -56,37 +63,24 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
+    
+    // 💡 ĐÃ XÓA: Getter/Setter cho image
+    // 💡 ĐÃ XÓA: Getter/Setter cho quantity
 
-    public String getImage() {
-        return image;
+    public double getNewPrice() {
+        return newPrice;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setNewPrice(double newPrice) {
+        this.newPrice = newPrice;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public double getOldPrice() {
+        return oldPrice;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public double getNew_price() {
-        return new_price;
-    }
-
-    public void setNew_price(double new_price) {
-        this.new_price = new_price;
-    }
-
-    public double getOld_price() {
-        return old_price;
-    }
-
-    public void setOld_price(double old_price) {
-        this.old_price = old_price;
+    public void setOldPrice(double oldPrice) {
+        this.oldPrice = oldPrice;
     }
 
     public String getDescription() {
@@ -97,79 +91,117 @@ public class Product {
         this.description = description;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public int getCategory_id() {
+        return category_id;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
     }
+    
+    // GETTERS/SETTERS CHO CÁC TRƯỜNG TÍCH HỢP (Giữ nguyên)
+    public List<Gallery> getGalleries() {
+        return galleries;
+    }
+
+    public void setGalleries(List<Gallery> galleries) {
+        this.galleries = galleries;
+    }
+
+    public List<ProductVariant> getVariants() {
+        return variants;
+    }
+
+    public void setVariants(List<ProductVariant> variants) {
+        this.variants = variants;
+    }
+    
+    // 💡 SỬA: Hàm tiện ích: Dùng để lấy ảnh thumbnail
+    public String getThumbnail() {
+        if (galleries != null && !galleries.isEmpty()) {
+            return galleries.get(0).getImageUrl();
+        }
+        // Nếu không có Gallery, trả về ảnh mặc định
+        return "lazy.png"; // Hoặc "images/default-product.png"
+    }
+    
+    // 💡 SỬA: Hàm tiện ích: Tính tổng tồn kho
+    public int getTotalStockQuantity() {
+        int total = 0;
+        if (variants != null) {
+            for (ProductVariant variant : variants) {
+                total += variant.getQuantityInStock();
+            }
+        }
+        // Nếu không có Variant, tổng kho là 0
+        return total;
+    }
+
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", image=" + image + ", quantity=" + quantity + ", new_price=" + new_price + ", old_price=" + old_price + ", description=" + description + ", categoryId=" + categoryId + '}';
+        // Cập nhật toString (đã xóa image, quantity)
+        return "Product{" + "id=" + id + ", name=" + name + ", newPrice=" + newPrice + ", oldPrice=" + oldPrice + ", description=" + description + ", category_id=" + category_id + ", galleries=" + galleries + ", variants=" + variants + '}';
     }
     
-    //  Builder Pattern  ---
+    // Builder Pattern ---
     public static class ProductBuilder {
         private int id;
         private String name;
-        private String image;
-        private int quantity;
-        private double new_price;
-        private double old_price;
-        private String description;
-        private int categoryId;
         
-        // Setter cho id, trả về ProductBuilder
+        // 💡 ĐÃ XÓA: image, quantity
+        
+        private double newPrice;
+        private double oldPrice;
+        private String description;
+        private int category_id;
+        
+        private List<Gallery> galleries;
+        private List<ProductVariant> variants;
+
+        
         public ProductBuilder id(int id) {
             this.id = id;
             return this;
         }
 
-        // Setter cho name, trả về ProductBuilder
         public ProductBuilder name(String name) {
             this.name = name;
             return this;
         }
         
-        // Setter cho image, trả về ProductBuilder
-        public ProductBuilder image(String image) {
-            this.image = image;
+        // 💡 ĐÃ XÓA: builder cho image, quantity
+        
+        public ProductBuilder newPrice(double newPrice) {
+            this.newPrice = newPrice;
             return this;
         }
         
-        // Setter cho quantity, trả về ProductBuilder
-        public ProductBuilder quantity(int quantity) {
-            this.quantity = quantity;
+        public ProductBuilder oldPrice(double oldPrice) {
+            this.oldPrice = oldPrice;
             return this;
         }
         
-        // Setter cho new_price, trả về ProductBuilder
-        public ProductBuilder new_price(double new_price) {
-            this.new_price = new_price;
-            return this;
-        }
-        
-        // Setter cho old_price, trả về ProductBuilder
-        public ProductBuilder old_price(double old_price) {
-            this.old_price = old_price;
-            return this;
-        }
-        
-        // Setter cho description, trả về ProductBuilder
         public ProductBuilder description(String description) {
             this.description = description;
             return this;
         }
         
-        // Setter cho categoryId, trả về ProductBuilder
-        public ProductBuilder categoryId(int categoryId) {
-            this.categoryId = categoryId;
+        public ProductBuilder category_id(int category_id) {
+            this.category_id = category_id;
+            return this;
+        }
+        
+        public ProductBuilder galleries(List<Gallery> galleries) {
+            this.galleries = galleries;
             return this;
         }
 
-        // Phương thức build() để tạo ra đối tượng Product
+        public ProductBuilder variants(List<ProductVariant> variants) {
+            this.variants = variants;
+            return this;
+        }
+
         public Product build() {
             return new Product(this);
         }

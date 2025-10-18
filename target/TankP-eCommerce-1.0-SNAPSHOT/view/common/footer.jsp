@@ -15,7 +15,7 @@
                     </li>
                     <li>
                       <span class="contact-info-label">Email:</span>
-                      <a href="#"><span class="__cf_email__">KhangNPCE181578@fpt.edu.vn</span></a>
+                      <a href="#"><span class="__cf_email__">support@tankp.com</span></a>
                     </li>
                   </ul>
                   <div class="social-icons">

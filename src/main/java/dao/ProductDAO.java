@@ -11,7 +11,13 @@ public class ProductDAO extends GenericDAO<Product> {
 
     @Override
     public List<Product> findAll() {
-        return queryGenericDAO(Product.class);
+        String sql = "SELECT [id], [name], "
+                + "[newPrice], "
+                + "[oldPrice], "
+                + "[description], [category_id] "
+                + "FROM [dbo].[Product]";
+        
+        return queryGenericDAO(Product.class, sql, null); 
     }
 
     @Override
@@ -20,19 +26,16 @@ public class ProductDAO extends GenericDAO<Product> {
     }
 
     public Product findById(Product product) {
-
+        // SỬA: Bỏ image, quantity. Dùng đúng tên cột newPrice, oldPrice.
         String sql = "SELECT [id]"
                 + " , [name]"
-                + " , [image]"
-                + " , [quantity]"
-                + " , [new_price]"
-                + " , [old_price]"
+                + " , [newPrice]"
+                + " , [oldPrice]"
                 + " , [description]"
-                + " , [categoryId]"
+                + " , [category_id]"
                 + " FROM [dbo].[Product]"
                 + " WHERE id = ?";
 
-        // Khởi tạo HashMap
         Map<String, Object> parameterMap = new LinkedHashMap<>();
         parameterMap.put("id", product.getId());
 
@@ -42,34 +45,39 @@ public class ProductDAO extends GenericDAO<Product> {
     }
 
     public List<Product> findByCategory(String categoryIdString) {
-
-        // 1. Khai báo câu lệnh SQL (chỉ lấy sản phẩm có categoryId khớp)
-        String sql = "SELECT [id], [name], [image], [quantity], [new_price], [old_price], [description], [categoryId] "
+        // SỬA: Bỏ image, quantity. Dùng đúng tên cột newPrice, oldPrice.
+        String sql = "SELECT [id], [name], "
+                + "[newPrice], "
+                + "[oldPrice], "
+                + "[description], [category_id] "
                 + "FROM [dbo].[Product] "
-                + "WHERE [categoryId] = ?";
+                + "WHERE [category_id] = ?";
 
-        // 2. Chuẩn bị tham số truy vấn
         Map<String, Object> parameterMap = new LinkedHashMap<>();
-
-        // 3. Xử lý chuyển đổi String sang số (nếu ID trong DB là số)
         try {
             int categoryId = Integer.parseInt(categoryIdString);
-            parameterMap.put("categoryId", categoryId);
+            parameterMap.put("category_id", categoryId); 
         } catch (NumberFormatException e) {
             return new ArrayList<>();
         }
 
-        // 4. Gọi phương thức truy vấn chung
         List<Product> list = queryGenericDAO(Product.class, sql, parameterMap);
         return list;
     }
 
     public List<Product> findByName(String keyword) {
-        String sql = "SELECT * FROM [product]\n"
+        // SỬA: Bỏ image, quantity. Dùng đúng tên cột newPrice, oldPrice.
+        String sql = "SELECT [id], [name], "
+                + "[newPrice], "
+                + "[oldPrice], "
+                + "[description], [category_id] "
+                + "FROM [dbo].[product] " // Tên bảng là 'product'
                 + "where [name] like ?";
-        parameterMap = new LinkedHashMap<>();
-        parameterMap.put("name", "%" + keyword + "%");
-        return queryGenericDAO(Product.class, sql, parameterMap);
+        
+        Map<String, Object> parameterMap = new LinkedHashMap<>();
+        parameterMap.put("keyword", "%" + keyword + "%");
 
+        List<Product> list = queryGenericDAO(Product.class, sql, parameterMap);
+        return list;
     }
 }

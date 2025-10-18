@@ -144,7 +144,7 @@
                     <p>
                         <c:choose>
                             <c:when test="${requestScope.errorMessage != null}">${requestScope.errorMessage}</c:when>
-                            <c:otherwise>We’re sorry, the content you’re looking for is currently unavailable..</c:otherwise>
+                            <c:otherwise>We’re sorry, the content you’re looking for is currently unavailable...</c:otherwise>
                         </c:choose>
                     </p>
                 </div>

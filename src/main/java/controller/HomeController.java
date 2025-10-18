@@ -11,78 +11,139 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import model.Product;
 import model.Category;
+import dao.GalleryDAO;
+import dao.ProductVariantDAO;
+import dao.ColorDAO;
+import dao.SizeDAO;
+import model.Color;
+import model.Gallery;
+import model.ProductVariant;
+import model.Size;
 
 public class HomeController extends HttpServlet {
 
-    ProductDAO productDAO = new ProductDAO();
-    CategoryDAO categoryDAO = new CategoryDAO();
+    private static final String HOME_PAGE = "view/pages/homePage.jsp";
+    private static final String ERROR_PAGE = "view/pages/errorPage.jsp";
+
+    // 1. KHAI BÁO DAO: Chỉ khai báo, không khởi tạo
+    private ProductDAO productDAO;
+    private CategoryDAO categoryDAO;
+    private GalleryDAO galleryDAO;
+    private ProductVariantDAO variantDAO;
+    private ColorDAO colorDAO;
+    private SizeDAO sizeDAO;
+    
+    // 2. SỬ DỤNG HÀM INIT() ĐỂ KHỞI TẠO TÀI NGUYÊN
+    @Override
+    public void init() throws ServletException {
+        System.out.println(">>> HomeController: Bắt đầu khởi tạo DAO...");
+        try {
+            productDAO = new ProductDAO();
+            categoryDAO = new CategoryDAO();
+            galleryDAO = new GalleryDAO();
+            variantDAO = new ProductVariantDAO();
+            colorDAO = new ColorDAO();
+            sizeDAO = new SizeDAO();
+            System.out.println(">>> HomeController: Khởi tạo DAO thành công.");
+        } catch (Exception e) {
+            System.err.println(">>> LỖI KHỞI TẠO DAO TRONG INIT() <<<");
+            e.printStackTrace();
+            throw new ServletException("Lỗi CSDL khi khởi tạo DAO. Vui lòng kiểm tra DBContext/Connection.", e);
+        }
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
-        // 1. GỌI HÀM LỌC: Lấy list sản phẩm đã được lọc/tìm kiếm
-        List<Product> searchResultProduct = findProductDoGet(request);
+        try {
+            // 1. Lấy list sản phẩm (đã áp dụng lọc/tìm kiếm)
+            List<Product> listProduct = findProductDoGet(request);
 
-        // Lấy kết quả tìm kiếm/lọc gán vào listProduct (KHÔNG KHAI BÁO LẠI)
-        List<Product> listProduct = searchResultProduct;
+            // 2. TÍCH HỢP DỮ LIỆU PHỤ VÀO listProduct
+            if (listProduct != null && !listProduct.isEmpty()) {
+                for (Product p : listProduct) {
+                    
+                    // Lấy và set Gallery (Ảnh)
+                    List<Gallery> galleries = galleryDAO.findByProductId(p.getId());
+                    p.setGalleries(galleries);
 
-        // 2. Lấy list Category
-        List<Category> listCategory = categoryDAO.findAll();
+                    // Lấy danh sách biến thể (variants)
+                    List<ProductVariant> variants = variantDAO.findByProductId(p.getId());
 
-        // list trống khởi tạo list rổng tránh NullPointerException
-        if (listCategory == null) {
-            listCategory = new ArrayList<>();
-        }
-        List<Category> rootCategories = new ArrayList<>(); // Danh mục cấp Cha
-        List<Category> childCategories = new ArrayList<>(); // Danh mục cấp Con
-
-        // tách danh sách
-        for (Category category : listCategory) {
-            // Đảm bảo getParentID() trả về Integer (đã kiểm tra trong Category.java)
-            if (category.getParentID() == null || category.getParentID() == 0) {
-                rootCategories.add(category);
-            } else {
-                childCategories.add(category);
+                    // Tích hợp Color, Size cho từng Variant 
+                    if (variants != null && !variants.isEmpty()) {
+                        for (ProductVariant v : variants) {
+                            // Tích hợp Color
+                            if (v.getColor_id() > 0) {
+                                Color colorFound = colorDAO.findById(v.getColor_id());
+                                if (colorFound != null) {
+                                    v.setColor(colorFound);
+                                }
+                            }
+                            // Tích hợp Size
+                            if (v.getSize_id() > 0) {
+                                Size sizeFound = sizeDAO.findById(v.getSize_id());
+                                if (sizeFound != null) {
+                                    v.setSize(sizeFound);
+                                }
+                            }
+                        }
+                    }
+                    p.setVariants(variants);
+                }
             }
-        }
-        // 4. Set các list vào Request Scope
-        request.setAttribute("listProduct", listProduct);
-        request.setAttribute("rootCategories", rootCategories);
-        request.setAttribute("childCategories", childCategories);
 
-        // 5. Forward sang trang JSP
-        request.getRequestDispatcher("view/pages/homePage.jsp").forward(request, response);
+            // 3. Lấy list Category và phân loại
+            List<Category> listCategory = categoryDAO.findAll();
+            if (listCategory == null) {
+                listCategory = new ArrayList<>();
+            }
+            List<Category> rootCategories = new ArrayList<>();
+            List<Category> childCategories = new ArrayList<>();
+            for (Category category : listCategory) {
+                if (category.getParentID() == null || category.getParentID() == 0) {
+                    rootCategories.add(category);
+                } else {
+                    childCategories.add(category);
+                }
+            }
+
+            // 4. Set các list vào Request Scope
+            request.setAttribute("listProduct", listProduct);
+            request.setAttribute("rootCategories", rootCategories);
+            request.setAttribute("childCategories", childCategories);
+
+            // 5. Forward sang trang JSP
+            request.getRequestDispatcher(HOME_PAGE).forward(request, response);
+            
+        } catch (Exception e) {
+            // CATCH LỖI TẠI ĐÂY LÀ ĐỂ XỬ LÝ LỖI TRUY VẤN CSDL (NoSuchFieldException, NullPointerException...)
+            System.err.println(">>> FATAL EXCEPTION in HomeController.java <<<");
+            e.printStackTrace();
+            
+            request.setAttribute("errorCode", 500);
+            request.setAttribute("errorMessage", "Lỗi hệ thống khi tải trang chủ. Vui lòng kiểm tra Server Console.");
+            request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Giữ nguyên logic cũ
-        // processRequest(request, response); 
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
+        doGet(request, response);
     }
 
     private List<Product> findProductDoGet(HttpServletRequest request) {
-        //get ve search
         String actionSearch = request.getParameter("search") == null
                 ? "default"
                 : request.getParameter("search");
-
-        //get list product dao
         List<Product> listProduct;
+        
         switch (actionSearch) {
             case "category":
-                // Fix Lỗi CÚ PHÁP: Bỏ "name:"
                 String categoryId = request.getParameter("categoryId");
                 listProduct = productDAO.findByCategory(categoryId);
                 break;
@@ -90,7 +151,6 @@ public class HomeController extends HttpServlet {
                 String keyword = request.getParameter("keyword");
                 listProduct = productDAO.findByName(keyword);
                 break;
-
             default:
                 listProduct = productDAO.findAll();
         }

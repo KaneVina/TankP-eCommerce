@@ -1,6 +1,5 @@
 package model;
 
-// Khớp với bảng [productVariant]: id, product_id, color_id, size_id, quantityInStock
 public class ProductVariant {
     
     private int id;
@@ -10,13 +9,13 @@ public class ProductVariant {
     private int quantityInStock;
     
     // Các trường tích hợp (không có trong CSDL, dùng để chứa data)
-    private Color color;
-    private Size size;
+    private transient Color color; 
+    private transient Size size;   
+//    Thêm transient để enericDAO.java nó nhận diện và bỏ qua các trường đã được đánh dấu là transient trong quá trình ánh xạ.
 
     public ProductVariant() {
     }
 
-    // Getters and Setters cho các cột CSDL
     public int getId() {
         return id;
     }
@@ -57,7 +56,6 @@ public class ProductVariant {
         this.quantityInStock = quantityInStock;
     }
 
-    // Getters and Setters cho các đối tượng TÍCH HỢP
     public Color getColor() {
         return color;
     }

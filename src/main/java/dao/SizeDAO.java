@@ -17,9 +17,9 @@ public class SizeDAO extends GenericDAO<Size> {
     public int insert(Size t) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     public Size findById(int id) {
-        String sql = "SELECT * FROM [Size] WHERE id = ?";
+        String sql = "SELECT id, LTRIM(RTRIM([size])) AS size FROM [Size] WHERE id = ?";
         Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put("id", id);
         List<Size> result = queryGenericDAO(Size.class, sql, parameters);

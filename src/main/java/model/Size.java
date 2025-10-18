@@ -1,6 +1,5 @@
 package model;
 
-// Khớp với bảng [size]: id, size
 public class Size {
     private int id;
     private String size;

@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+
 <footer class="footer bg-dark">
         <div class="footer-middle">
           <div class="container">

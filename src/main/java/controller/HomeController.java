@@ -25,7 +25,7 @@ public class HomeController extends HttpServlet {
     private static final String HOME_PAGE = "view/pages/homePage.jsp";
     private static final String ERROR_PAGE = "view/pages/errorPage.jsp";
 
-    // 1. KHAI BÁO DAO: Chỉ khai báo, không khởi tạo
+    // 1. KHAI BÁO DAO
     private ProductDAO productDAO;
     private CategoryDAO categoryDAO;
     private GalleryDAO galleryDAO;
@@ -33,10 +33,10 @@ public class HomeController extends HttpServlet {
     private ColorDAO colorDAO;
     private SizeDAO sizeDAO;
     
-    // 2. SỬ DỤNG HÀM INIT() ĐỂ KHỞI TẠO TÀI NGUYÊN
+    // 2. INIT() ĐỂ KHỞI TẠO TÀI NGUYÊN
     @Override
     public void init() throws ServletException {
-        System.out.println(">>> HomeController: Bắt đầu khởi tạo DAO...");
+        System.out.println(">>> HomeController - Bắt đầu khởi tạo DAO...");
         try {
             productDAO = new ProductDAO();
             categoryDAO = new CategoryDAO();
@@ -44,11 +44,11 @@ public class HomeController extends HttpServlet {
             variantDAO = new ProductVariantDAO();
             colorDAO = new ColorDAO();
             sizeDAO = new SizeDAO();
-            System.out.println(">>> HomeController: Khởi tạo DAO thành công.");
+            System.out.println(">>> HomeController - Khởi tạo DAO thành công.");
         } catch (Exception e) {
-            System.err.println(">>> LỖI KHỞI TẠO DAO TRONG INIT() <<<");
+            System.err.println("LỖI KHỞI TẠO DAO TRONG INIT() NÈ");
             e.printStackTrace();
-            throw new ServletException("Lỗi CSDL khi khởi tạo DAO. Vui lòng kiểm tra DBContext/Connection.", e);
+            throw new ServletException("Lỗi CSDL khi khởi tạo DAO. MỞ SQL CONNET LẠI DÙM.", e);
         }
     }
 
@@ -65,15 +65,9 @@ public class HomeController extends HttpServlet {
             // 2. TÍCH HỢP DỮ LIỆU PHỤ VÀO listProduct
             if (listProduct != null && !listProduct.isEmpty()) {
                 for (Product p : listProduct) {
-                    
-                    // Lấy và set Gallery (Ảnh)
                     List<Gallery> galleries = galleryDAO.findByProductId(p.getId());
                     p.setGalleries(galleries);
-
-                    // Lấy danh sách biến thể (variants)
                     List<ProductVariant> variants = variantDAO.findByProductId(p.getId());
-
-                    // Tích hợp Color, Size cho từng Variant 
                     if (variants != null && !variants.isEmpty()) {
                         for (ProductVariant v : variants) {
                             // Tích hợp Color
@@ -120,12 +114,10 @@ public class HomeController extends HttpServlet {
             request.getRequestDispatcher(HOME_PAGE).forward(request, response);
             
         } catch (Exception e) {
-            // CATCH LỖI TẠI ĐÂY LÀ ĐỂ XỬ LÝ LỖI TRUY VẤN CSDL (NoSuchFieldException, NullPointerException...)
-            System.err.println(">>> FATAL EXCEPTION in HomeController.java <<<");
+            System.err.println(">>> SAI Ở HOME CONTROLLER <<<");
             e.printStackTrace();
-            
             request.setAttribute("errorCode", 500);
-            request.setAttribute("errorMessage", "Lỗi hệ thống khi tải trang chủ. Vui lòng kiểm tra Server Console.");
+            request.setAttribute("errorMessage", "Lỗi hệ thống khi tải trang chủ, Check Server Console.");
             request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
         }
     }

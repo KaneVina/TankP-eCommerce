@@ -1,6 +1,7 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <meta
@@ -14,8 +15,7 @@
         <title>TankP eCommerce</title>
 
         <meta name="keywords" content="HTML5 Template" />
-        <meta name="description" 
-              content="TankP eCommerce" />
+        <meta name="description" content="TankP eCommerce" />
         <meta name="author" content="SW-THEMES" />
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
@@ -247,9 +247,8 @@
                                     <figure>
                                         <a href="productDetail?id=${p.id}">
                                             <c:choose>
-                                                <%-- 1. KIỂM TRA NẾU CÓ DỮ LIỆU TRONG GALLERY --%>
+                                                <%--d--%>
                                                 <c:when test="${!empty p.galleries}">
-
                                                     <%-- Lấy ảnh đầu tiên ra --%>
                                                     <c:set var="image1" value="${p.galleries[0].imageUrl}" />
 
@@ -284,7 +283,7 @@
 
                                                 </c:when>
 
-                                                <%-- 3. NẾU KHÔNG CÓ ẢNH TRONG GALLERY, DÙNG ẢNH MẶC ĐỊNH --%>
+                                                <%-- 3. NẾU KHÔNG CÓ ẢNH TRONG GALLERY, DÙNG ẢNH NHỚ EDIT CÁI ẢNH MẶC ĐỊNHHHHHHHHHH --%>
                                                 <c:otherwise>
                                                     <img src="${pageContext.request.contextPath}/assets/images/products/lazy.png"
                                                          width="280" height="280" alt="${p.name}"/>
@@ -299,12 +298,8 @@
                                             <div class="category-list">
                                                 <c:set 
                                                     var="categoryName" value="N/A"/>
-
-                                                <%-- Khớp p.category_id với list category --%>
-
                                                 <c:forEach var="cat" items="${rootCategories}">
                                                     <c:if test="${cat.id == p.category_id}">
-
                                                         <c:set var="categoryName" value="${cat.name}"/>
                                                     </c:if>
 
@@ -316,11 +311,8 @@
 
                                                     </c:if>
                                                 </c:forEach>
-
-
                                                 <a href="home?search=category&categoryId=${p.category_id}" class="product-category">
                                                     ${categoryName}
-
                                                 </a>
                                             </div>
 
@@ -330,8 +322,6 @@
 
                                             <a href="productDetail?id=${p.id}">${p.name}</a>
                                         </h3>
-
-                                        <%-- Giữ nguyên Ratings, Price và Actions --%>
 
                                         <div class="ratings-container">
                                             <div class="product-ratings">
@@ -447,13 +437,13 @@
 
                                                 </a>
 
-                                                <%-- CẤP CON: Dùng ID động khớp với Cấp Cha --%>
+                                                <!-- CẤP CON: Dùng ID động khớp với Cấp Cha -->
 
                                                 <div class="collapse show" id="widget-category-${rootCat.id}">
                                                     <ul class="cat-sublist">
 
                                                         <c:forEach var="childCat" items="${childCategories}">
-                                                            <%-- KIỂM TRA MỐI QUAN HỆ --%>
+                                                            <!-- KIỂM TRA MỐI QUAN HỆ -->
 
                                                             <c:if test="${childCat.parentID == rootCat.id}">
 
@@ -526,11 +516,9 @@
                         <div class="widget widget-color">
                             <h3 class="widget-title">
                                 <a
-
                                     data-toggle="collapse"
                                     href="#widget-body-4"
                                     role="button"
-
                                     aria-expanded="true"
                                     aria-controls="widget-body-4"
                                     >Color</a

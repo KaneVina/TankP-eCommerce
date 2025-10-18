@@ -10,10 +10,8 @@ public class Product {
     private double oldPrice;
     private String description;
     private int category_id;
-    
-    // CÁC TRƯỜNG TÍCH HỢP (Giữ nguyên)
-    private List<Gallery> galleries;
-    private List<ProductVariant> variants;
+    private transient List<Gallery> galleries;
+    private transient List<ProductVariant> variants;
 
     public Product() {
     }
@@ -28,7 +26,6 @@ public class Product {
         this.category_id = category_id;
     }
     
-    // Constructor cho Builder (Đã xóa image, quantity)
     private Product(ProductBuilder builder) {
         this.id = builder.id;
         this.name = builder.name;
@@ -44,9 +41,6 @@ public class Product {
     public static ProductBuilder builder() {
         return new ProductBuilder();
     }
-
-
-    // Getters and Setters
 
     public int getId() {
         return id;
@@ -64,9 +58,6 @@ public class Product {
         this.name = name;
     }
     
-    // 💡 ĐÃ XÓA: Getter/Setter cho image
-    // 💡 ĐÃ XÓA: Getter/Setter cho quantity
-
     public double getNewPrice() {
         return newPrice;
     }
@@ -99,7 +90,6 @@ public class Product {
         this.category_id = category_id;
     }
     
-    // GETTERS/SETTERS CHO CÁC TRƯỜNG TÍCH HỢP (Giữ nguyên)
     public List<Gallery> getGalleries() {
         return galleries;
     }
@@ -116,16 +106,14 @@ public class Product {
         this.variants = variants;
     }
     
-    // 💡 SỬA: Hàm tiện ích: Dùng để lấy ảnh thumbnail
+//    Khi không có anhr sẽ trả về ảnh này
     public String getThumbnail() {
         if (galleries != null && !galleries.isEmpty()) {
             return galleries.get(0).getImageUrl();
         }
-        // Nếu không có Gallery, trả về ảnh mặc định
-        return "lazy.png"; // Hoặc "images/default-product.png"
+        return "lazy.png"; 
     }
     
-    // 💡 SỬA: Hàm tiện ích: Tính tổng tồn kho
     public int getTotalStockQuantity() {
         int total = 0;
         if (variants != null) {
@@ -133,23 +121,19 @@ public class Product {
                 total += variant.getQuantityInStock();
             }
         }
-        // Nếu không có Variant, tổng kho là 0
         return total;
     }
 
 
     @Override
     public String toString() {
-        // Cập nhật toString (đã xóa image, quantity)
         return "Product{" + "id=" + id + ", name=" + name + ", newPrice=" + newPrice + ", oldPrice=" + oldPrice + ", description=" + description + ", category_id=" + category_id + ", galleries=" + galleries + ", variants=" + variants + '}';
     }
     
-    // Builder Pattern ---
     public static class ProductBuilder {
         private int id;
         private String name;
         
-        // 💡 ĐÃ XÓA: image, quantity
         
         private double newPrice;
         private double oldPrice;
@@ -170,7 +154,6 @@ public class Product {
             return this;
         }
         
-        // 💡 ĐÃ XÓA: builder cho image, quantity
         
         public ProductBuilder newPrice(double newPrice) {
             this.newPrice = newPrice;

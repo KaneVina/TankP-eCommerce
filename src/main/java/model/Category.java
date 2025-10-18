@@ -1,12 +1,10 @@
 package model;
 
-// Phải khớp với CSDL: Bảng [category] có cột [id], [name], [parent_id]
-// Phải khớp với HomeController: đang dùng category.getParentID()
 public class Category {
 
     private int id;
     private String name;
-    private Integer parent_id; // Dùng Integer để có thể nhận giá trị NULL
+    private Integer parent_id; 
 
     public Category() {
     }

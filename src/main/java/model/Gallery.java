@@ -1,6 +1,5 @@
 package model;
 
-// Khớp với bảng [gallery]: id, product_id, imageUrl
 public class Gallery {
     private int id;
     private int product_id;

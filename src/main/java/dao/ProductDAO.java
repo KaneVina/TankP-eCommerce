@@ -66,12 +66,11 @@ public class ProductDAO extends GenericDAO<Product> {
     }
 
     public List<Product> findByName(String keyword) {
-        // SỬA: Bỏ image, quantity. Dùng đúng tên cột newPrice, oldPrice.
         String sql = "SELECT [id], [name], "
                 + "[newPrice], "
                 + "[oldPrice], "
                 + "[description], [category_id] "
-                + "FROM [dbo].[product] " // Tên bảng là 'product'
+                + "FROM [dbo].[product] " 
                 + "where [name] like ?";
         
         Map<String, Object> parameterMap = new LinkedHashMap<>();

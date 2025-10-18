@@ -2,7 +2,7 @@ package utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection; 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,19 +14,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Lớp trừu tượng GenericDAO cung cấp các phương thức CRUD cơ bản 
- * sử dụng Reflection để ánh xạ đối tượng và sử dụng Connection 
- * được kế thừa từ DBContext.
+ * Lớp trừu tượng GenericDAO cung cấp các phương thức CRUD cơ bản sử dụng
+ * Reflection để ánh xạ đối tượng và sử dụng Connection được kế thừa từ
+ * DBContext.
  *
  * @param <T> Loại đối tượng Model
  */
-
 public abstract class GenericDAO<T> extends DBContext {
 
     protected PreparedStatement statement;
     protected ResultSet resultSet;
     protected Map<String, Object> parameterMap;
-    
+
     public static final boolean CONDITION_AND = true;
     public static final boolean CONDITION_OR = false;
 
@@ -34,7 +33,7 @@ public abstract class GenericDAO<T> extends DBContext {
         List<T> result = new ArrayList<>();
         Connection conn = null; // KHAI BÁO BIẾN CỤC BỘ (conn)
         try {
-            conn = getConnection(); 
+            conn = getConnection();
             StringBuilder sqlBuilder = new StringBuilder();
             sqlBuilder.append("SELECT * FROM ").append(clazz.getSimpleName());
             statement = conn.prepareStatement(sqlBuilder.toString()); // SỬ DỤNG conn
@@ -50,8 +49,8 @@ public abstract class GenericDAO<T> extends DBContext {
                 | InstantiationException
                 | NoSuchMethodException
                 | InvocationTargetException
-                | SQLException 
-                | ClassNotFoundException e) { 
+                | SQLException
+                | ClassNotFoundException e) {
             System.err.println("Exception ở hàm queryGenericDAO (findAll): " + e.getMessage());
         } finally {
             try {
@@ -74,9 +73,9 @@ public abstract class GenericDAO<T> extends DBContext {
     protected List<T> queryGenericDAO(Class<T> clazz, String sql, Map<String, Object> parameterHashmap) {
 
         List<T> result = new ArrayList<>();
-        Connection conn = null; 
+        Connection conn = null;
         try {
-            conn = getConnection(); 
+            conn = getConnection();
 
             List<Object> parameters = new ArrayList<>();
 
@@ -86,7 +85,7 @@ public abstract class GenericDAO<T> extends DBContext {
                 }
             }
 
-            statement = conn.prepareStatement(sql); 
+            statement = conn.prepareStatement(sql);
 
             int index = 1;
             for (Object value : parameters) {
@@ -141,12 +140,14 @@ public abstract class GenericDAO<T> extends DBContext {
         Field[] fields = clazz.getDeclaredFields();
 
         for (Field field : fields) {
-
+            // Nếu trường là 'transient', bỏ qua không ánh xạ
+            if (java.lang.reflect.Modifier.isTransient(field.getModifiers())) {
+                continue;
+            }
             Object value = getFieldValue(rs, field);
             field.setAccessible(true);
             field.set(obj, value);
         }
-
         return obj;
     }
 
@@ -160,21 +161,53 @@ public abstract class GenericDAO<T> extends DBContext {
             return null;
         }
 
-        // 2. Xử lý kiểu nguyên thủy (primitive)
-        if (fieldType == int.class) {
-            return rs.getInt(fieldName);
-        } else if (fieldType == long.class) {
-            return rs.getLong(fieldName);
-        } else if (fieldType == double.class) {
-            return rs.getDouble(fieldName);
-        } else if (fieldType == boolean.class) {
-            return rs.getBoolean(fieldName);
-        } else if (fieldType == float.class) {
-            return rs.getFloat(fieldName);
-        }
+        // Thử tên cột mặc định (tên thuộc tính Java)
+        String columnName = fieldName;
+        Object value = null;
 
-        // 3. Xử lý KIỂU ĐÓNG GÓI (Wrapper Class, String, Timestamp)
-        Object value = rs.getObject(fieldName);
+        try {
+            // Xử lý kiểu nguyên thủy (primitive)
+            if (fieldType == int.class) {
+                value = rs.getInt(columnName);
+            } else if (fieldType == long.class) {
+                value = rs.getLong(columnName);
+            } else if (fieldType == double.class) {
+                value = rs.getDouble(columnName);
+            } else if (fieldType == boolean.class) {
+                value = rs.getBoolean(columnName);
+            } else if (fieldType == float.class) {
+                value = rs.getFloat(columnName);
+            } else {
+                // Xử lý KIỂU ĐÓNG GÓI (Wrapper Class, String, Timestamp)
+                value = rs.getObject(columnName);
+            }
+        } catch (SQLException e) {
+            // Nếu thất bại (thường do lỗi tên cột), thử tên cột với chữ cái đầu tiên viết hoa
+            try {
+                if (columnName.length() > 0) {
+                    columnName = Character.toUpperCase(columnName.charAt(0)) + columnName.substring(1);
+
+                    if (fieldType == int.class) {
+                        value = rs.getInt(columnName);
+                    } else if (fieldType == long.class) {
+                        value = rs.getLong(columnName);
+                    } else if (fieldType == double.class) {
+                        value = rs.getDouble(columnName);
+                    } else if (fieldType == boolean.class) {
+                        value = rs.getBoolean(columnName);
+                    } else if (fieldType == float.class) {
+                        value = rs.getFloat(columnName);
+                    } else {
+                        value = rs.getObject(columnName);
+                    }
+                } else {
+                    throw e; // Ném lại lỗi ban đầu nếu không thể sửa tên
+                }
+            } catch (SQLException finalException) {
+                // Nếu vẫn lỗi, ném lỗi ban đầu để debug
+                throw e;
+            }
+        }
 
         // Nếu giá trị là NULL, trả về null.
         if (value == null) {
@@ -196,8 +229,7 @@ public abstract class GenericDAO<T> extends DBContext {
             return (Float) value;
         } else if (fieldType == Timestamp.class) {
             return (Timestamp) value;
-        } 
-        else {
+        } else {
             return value;
         }
     }
@@ -209,7 +241,7 @@ public abstract class GenericDAO<T> extends DBContext {
         for (Map.Entry<String, Object> entry : parameterMap.entrySet()) {
             parameters.add(entry.getValue());
         }
-        
+
         Connection conn = null;
         try {
             conn = getConnection();
@@ -239,7 +271,7 @@ public abstract class GenericDAO<T> extends DBContext {
                 if (statement != null) {
                     statement.close();
                 }
-                if (conn != null) { 
+                if (conn != null) {
                     conn.close();
                 }
             } catch (SQLException e) {
@@ -251,7 +283,7 @@ public abstract class GenericDAO<T> extends DBContext {
     protected boolean deleteGenericDAO(String sql, Map<String, Object> parameterMap) {
         return updateGenericDAO(sql, parameterMap);
     }
-    
+
     protected int insertGenericDAO(T object) {
         Class<?> clazz = object.getClass();
         Field[] fields = clazz.getDeclaredFields();
@@ -293,12 +325,12 @@ public abstract class GenericDAO<T> extends DBContext {
         }
 
         sqlBuilder.append(")");
-        
+
         int id = 0;
         Connection conn = null; // KHAI BÁO BIẾN CỤC BỘ (conn)
         try {
             conn = getConnection();
-            
+
             // Bắt đầu giao dịch và chuẩn bị câu truy vấn (lấy khóa chính tự động)
             conn.setAutoCommit(false);
             statement = conn.prepareStatement(sqlBuilder.toString(), Statement.RETURN_GENERATED_KEYS);
@@ -361,7 +393,7 @@ public abstract class GenericDAO<T> extends DBContext {
         Connection conn = null; // KHAI BÁO BIẾN CỤC BỘ (conn)
         try {
             conn = getConnection();
-            
+
             // Bắt đầu giao dịch và chuẩn bị câu truy vấn (lấy khóa chính tự động)
             conn.setAutoCommit(false);
             statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -504,7 +536,9 @@ public abstract class GenericDAO<T> extends DBContext {
         }
         return total;
     }
+
     public abstract List<T> findAll();
+
     public abstract int insert(T t);
 
 }

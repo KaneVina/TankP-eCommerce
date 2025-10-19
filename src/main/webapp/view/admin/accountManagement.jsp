@@ -20,6 +20,23 @@
         <main class="main">
             <div class="page-header">
                 <div class="container d-flex flex-column align-items-center">
+                    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                        <div class="container">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="demo4.html">Home</a></li>
+                                <li class="breadcrumb-item">
+                                    <a href="category.html">Shop</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="category.html">Admin Area</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Dash Board
+                                </li>
+                            </ol>
+                        </div>
+                    </nav>
+
                     <h1>Account Management</h1>
                 </div>
             </div>
@@ -27,7 +44,6 @@
             <div class="container account-container custom-account-container">
                 <div class="row">
                     <jsp:include page="/view/common/dashboard-sidebar.jsp" />
-
                     <div class="col-lg-10 order-lg-last order-1 tab-content">
                         <div class="tab-pane fade show active">
                             <div class="account-content-main">

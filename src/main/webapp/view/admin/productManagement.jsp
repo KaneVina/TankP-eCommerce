@@ -18,24 +18,26 @@
     <body>
         <jsp:include page="/view/common/header.jsp"/>
         <main class="main">
-            <%-- Header trang --%>
             <div class="page-header">
                 <div class="container d-flex flex-column align-items-center">
                     <nav aria-label="breadcrumb" class="breadcrumb-nav">
-                        <div class="container"> <ol class="breadcrumb"> <li class="breadcrumb-item"><a href="demo4.html">Home</a></li> <li class="breadcrumb-item"><a href="#">Admin Area</a></li> <li class="breadcrumb-item active" aria-current="page">Product Management</li> </ol> </div>
+                        <div class="container"> <ol class="breadcrumb"> 
+                                <li class="breadcrumb-item"><a href="demo4.html">Home</a></li> 
+                                <li class="breadcrumb-item"><a href="#">Admin Area</a></li> 
+                                <li class="breadcrumb-item active" aria-current="page"> Dash Board</li>
+                            </ol> 
+                        </div>
                     </nav>
                     <h1>Product Management</h1>
                 </div>
             </div>
 
-            <%-- Nội dung chính --%>
             <div class="container account-container custom-account-container">
                 <div class="row">
                     <jsp:include page="/view/common/dashboard-sidebar.jsp" />
                     <div class="col-lg-10 order-lg-last order-1 tab-content">
                         <div class="tab-pane fade show active">
                             <div class="account-content-main">
-                                <%-- Thanh tiêu đề và nút chức năng --%>
                                 <div class="d-flex justify-content-between align-items-center mb-4">
                                     <h3 class="account-sub-title d-none d-md-block mb-0"> <i class="fas fa-list align-middle mr-3"></i>Product Management </h3>
                                     <div class="d-flex align-items-center">
@@ -45,7 +47,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <%-- Bảng dữ liệu --%>
                             <div class="data-table-style text-center">
                                 <table class="table table-hover table-striped">
                                     <thead> <tr> <th>ID</th> <th>PRODUCT NAME</th> <th>CATEGORY</th> <th>STOCK</th> <th>LIST PRICE</th> <th>ACTIONS</th> </tr> </thead>

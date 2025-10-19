@@ -14,7 +14,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" id="address-tab" href="order-management.html">
+            <a class="nav-link" id="address-tab" href="${pageContext.request.contextPath}/view/admin/orderManagement.jsp">
                 Order Management
             </a>
         </li>
@@ -32,7 +32,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="login.html">Logout</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/view/pages/homePage.jsp">Logout</a>
         </li>
     </ul>
 </div>

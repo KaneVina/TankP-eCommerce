@@ -5,7 +5,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        
+
         <title>TankP eCommerce - Order Management</title>
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
@@ -23,7 +23,12 @@
             <div class="page-header">
                 <div class="container d-flex flex-column align-items-center">
                     <nav aria-label="breadcrumb" class="breadcrumb-nav">
-                        <div class="container"> <ol class="breadcrumb"> <li class="breadcrumb-item"><a href="demo4.html">Home</a></li> <li class="breadcrumb-item"><a href="#">Admin Area</a></li> <li class="breadcrumb-item active" aria-current="page">Order Management</li> </ol> </div>
+                        <div class="container"> <ol class="breadcrumb"> 
+                                <li class="breadcrumb-item"><a href="demo4.html">Home</a></li> 
+                                <li class="breadcrumb-item"><a href="#">Admin Area</a></li> 
+                                <li class="breadcrumb-item active" aria-current="page"> Dash Board</li>
+                            </ol> 
+                        </div>
                     </nav>
                     <h1>Order Management</h1>
                 </div>
@@ -237,7 +242,7 @@
                                                             <td class="text-center border-top-0"><strong class="total-quantity">0</strong></td>
                                                             <td colspan="2" class="border-top-0"></td> <%-- Cột trống --%>
                                                         </tr>
-                                                       
+
                                                         <tr>
                                                             <td colspan="5" class="text-right"><strong>Total Amount:</strong></td>
                                                             <td class="text-right"><strong class="total-amount">$0.00</strong></td>

@@ -10,7 +10,6 @@ public class CategoryDAO extends GenericDAO<Category> {
 
     @Override
     public List<Category> findAll() {
-        // Dùng hàm của cha (GenericDAO) để lấy tất cả
         return queryGenericDAO(Category.class);
     }
 

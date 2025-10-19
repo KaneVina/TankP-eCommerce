@@ -18,7 +18,7 @@ public class ProductVariantDAO extends GenericDAO<ProductVariant> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    // Hàm quan trọng: Lấy tất cả biến thể theo ID sản phẩm
+    // Lấy tất cả biến thể theo ID sản phẩm
     public List<ProductVariant> findByProductId(int productId) {
         String sql = "SELECT * FROM [ProductVariant] WHERE [product_id] = ?";
         Map<String, Object> parameters = new LinkedHashMap<>();

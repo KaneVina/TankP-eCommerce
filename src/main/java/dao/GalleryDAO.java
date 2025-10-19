@@ -18,7 +18,7 @@ public class GalleryDAO extends GenericDAO<Gallery> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    // Hàm quan trọng: Lấy tất cả ảnh theo ID sản phẩm
+    // Lấy tất cả ảnh theo ID sản phẩm
     public List<Gallery> findByProductId(int productId) {
         String sql = "SELECT * FROM [gallery] WHERE [product_id] = ?";
         Map<String, Object> parameters = new LinkedHashMap<>();

@@ -101,7 +101,7 @@
                                                 <c:otherwise>
                                                     <%-- Ảnh mặc định nếu không có gallery --%>
                                                     <div class="product-item">
-                                                        <img class="product-single-image" src="${pageContext.request.contextPath}/assets/images/products/lazy.png" width="468" height="468" alt="Ảnh mặc định"/>
+                                                        <img class="product-single-image" src="${pageContext.request.contextPath}/assets/images/no-image.png" width="468" height="468" alt="Ảnh mặc định"/>
                                                     </div>
                                                 </c:otherwise>
                                             </c:choose>
@@ -133,7 +133,7 @@
                                             <c:otherwise>
                                                 <%-- Thumbnail mặc định --%>
                                                 <div class="owl-dot">
-                                                    <img src="${pageContext.request.contextPath}/assets/images/products/lazy.png" width="110" height="110" alt="Thumbnail"/>
+                                                    <img src="${pageContext.request.contextPath}/assets/images/no-image.png" width="110" height="110" alt="Thumbnail"/>
                                                 </div>
                                             </c:otherwise>
                                         </c:choose>

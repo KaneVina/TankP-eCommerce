@@ -27,8 +27,6 @@ public class ColorDAO extends GenericDAO<Color> {
 //        return result.isEmpty() ? null : result.get(0);
 //    }
     
-    // dao/ColorDAO.java
-
     public Color findById(int id) {
         String sql = "SELECT id, LTRIM(RTRIM([color])) AS color, [hexCode] FROM [color] WHERE id = ?";
         Map<String, Object> parameters = new LinkedHashMap<>();

@@ -16,7 +16,6 @@ public class Product {
     public Product() {
     }
 
-    // Constructor dùng cho mục đích cơ bản (nếu cần)
     public Product(int id, String name, double newPrice, double oldPrice, String description, int category_id) {
         this.id = id;
         this.name = name;
@@ -111,7 +110,7 @@ public class Product {
         if (galleries != null && !galleries.isEmpty()) {
             return galleries.get(0).getImageUrl();
         }
-        return "lazy.png"; 
+        return "no-image.png"; 
     }
     
     public int getTotalStockQuantity() {

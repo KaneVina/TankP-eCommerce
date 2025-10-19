@@ -285,7 +285,7 @@
 
                                                 <%-- 3. NẾU KHÔNG CÓ ẢNH TRONG GALLERY, DÙNG ẢNH NHỚ EDIT CÁI ẢNH MẶC ĐỊNHHHHHHHHHH --%>
                                                 <c:otherwise>
-                                                    <img src="${pageContext.request.contextPath}/assets/images/products/lazy.png"
+                                                    <img src="${pageContext.request.contextPath}/assets/images/no-image.png"
                                                          width="280" height="280" alt="${p.name}"/>
                                                 </c:otherwise>
                                             </c:choose>

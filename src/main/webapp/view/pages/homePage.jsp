@@ -587,370 +587,79 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="widget widget-featured">
-
                             <h3 class="widget-title">Featured</h3>
-
                             <div class="widget-body">
-                                <div class="owl-carousel widget-featured-products">
 
-                                    <div class="featured-col">
-                                        <div
-                                            class="product-default left-details product-widget"
+                                <%-- Kiểm tra xem list có rỗng hay không --%>
+                                <c:if test="${not empty featuredProducts}">
 
-                                            >
-                                            <figure>
+                                    <div class="owl-carousel widget-featured-products">
 
-                                                <a href="product.html">
-                                                    <img
+                                        <%-- Bắt đầu vòng lặp, nhóm 3 sản phẩm vào 1 slide (featured-col) --%>
+                                        <c:forEach items="${featuredProducts}" var="fp" varStatus="status">
 
-                                                        src="${pageContext.request.contextPath}/assets/images/products/small/product-4.jpg"
-                                                        width="75"
+                                            <%-- Mở 1 slide mới cho sản phẩm đầu tiên (0), 3, 6, ... --%>
+                                            <c:if test="${status.index % 3 == 0}">
+                                                <div class="featured-col">
+                                                </c:if>
 
-                                                        height="75"
+                                                <%-- === BẮT ĐẦU 1 SẢN PHẨM === --%>
+                                                <div class="product-default left-details product-widget">
+                                                    <figure>
+                                                        <%-- Dùng link động đến trang chi tiết sản phẩm --%>
+                                                        <a href="productDetail?id=${fp.id}">
 
-                                                        alt="product"
-                                                        />
+                                                            <%-- Logic hiển thị 2 ảnh (ảnh chính và ảnh hover) --%>
+                                                            <c:choose>
+                                                                <%-- Có ít nhất 1 ảnh --%>
+                                                                <c:when test="${!empty fp.galleries}">
+                                                                    <%-- Lấy ảnh 1 --%>
+                                                                    <c:set var="image1" value="${fp.galleries[0].imageUrl}" />
+                                                                    <img src="${fn:startsWith(image1, 'http') ? image1 : pageContext.request.contextPath.concat('/assets/images/products/').concat(image1)}"
+                                                                         width="75" height="75" alt="${fp.name}" />
 
-                                                    <img
-                                                        src="${pageContext.request.contextPath}/assets/images/products/small/product-4-2.jpg"
+                                                                    <%-- Kiểm tra xem có ảnh thứ 2 (ảnh hover) không --%>
+                                                                    <c:if test="${fn:length(fp.galleries) > 1}">
+                                                                        <c:set var="image2" value="${fp.galleries[1].imageUrl}" />
+                                                                        <img src="${fn:startsWith(image2, 'http') ? image2 : pageContext.request.contextPath.concat('/assets/images/products/').concat(image2)}"
+                                                                             width="75" height="75" alt="${fp.name} (hover)" />
+                                                                    </c:if>
+                                                                </c:when>
+                                                                <%-- Không có ảnh nào --%>
+                                                                <c:otherwise>
+                                                                    <img src="${pageContext.request.contextPath}/assets/images/no-image.png" 
+                                                                         width="75" height="75" alt="No image available" />
+                                                                </c:otherwise>
+                                                            </c:choose>
 
-                                                        width="75"
-                                                        height="75"
+                                                        </a>
+                                                    </figure>
 
-                                                        alt="product"
-                                                        />
+                                                    <div class="product-details">
+                                                        <h3 class="product-title">
+                                                            <a href="productDetail?id=${fp.id}">${fp.name}</a>
+                                                        </h3>
+                                                        <div class="price-box">
+                                                            <%-- Hiển thị giá động (giá mới) --%>
+                                                            <span class="product-price">$${fp.newPrice}</span>
 
-                                                </a>
-                                            </figure>
-
-                                            <div class="product-details">
-                                                <h3 class="product-title">
-
-                                                    <a href="product.html"
-                                                       >Blue Backpack for the Young - S</a
-
-                                                    >
-                                                </h3>
-
-                                                <div class="ratings-container">
-                                                    <div class="product-ratings">
-
-                                                        <span
-
-                                                            class="ratings"
-                                                            style="width: 100%"
-
-                                                            ></span>
-                                                        <span class="tooltiptext tooltip-top"></span>
-
+                                                            <%-- Nếu bạn muốn hiển thị cả giá cũ (nếu có) --%>
+                                                            <c:if test="${fp.oldPrice > 0 && fp.oldPrice > fp.newPrice}">
+                                                                <span class="old-price">$${fp.oldPrice}</span>
+                                                            </c:if>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="price-box">
-                                                    <span class="product-price">$49.00</span>
+                                                <!-- Đóng 1 slide sau 3 sản phẩm (2, 5, 8, ...) HOẶC khi là sản phẩm cuối cùng -->
+                                                <c:if test="${status.index % 3 == 2 || status.last}">
+                                                </div> </c:if>
 
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div
-                                            class="product-default left-details product-widget"
-
-                                            >
-                                            <figure>
-
-                                                <a href="product.html">
-                                                    <img
-
-                                                        src="${pageContext.request.contextPath}/assets/images/products/small/product-5.jpg"
-                                                        width="75"
-
-                                                        height="75"
-                                                        alt="product"
-
-                                                        />
-                                                    <img
-
-                                                        src="${pageContext.request.contextPath}/assets/images/products/small/product-5-2.jpg"
-
-                                                        width="75"
-                                                        height="75"
-
-                                                        alt="product"
-                                                        />
-
-                                                </a>
-                                            </figure>
-
-                                            <div class="product-details">
-                                                <h3 class="product-title">
-
-                                                    <a href="product.html"
-                                                       >Casual Spring Blue Shoes</a
-
-                                                    >
-                                                </h3>
-
-                                                <div class="ratings-container">
-                                                    <div class="product-ratings">
-
-                                                        <span
-                                                            class="ratings"
-
-                                                            style="width: 100%"
-
-                                                            ></span>
-                                                        <span class="tooltiptext tooltip-top"></span>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="price-box">
-
-                                                    <span class="product-price">$49.00</span>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div
-                                            class="product-default left-details product-widget"
-                                            >
-
-                                            <figure>
-                                                <a href="product.html">
-
-                                                    <img
-                                                        src="${pageContext.request.contextPath}/assets/images/products/small/product-6.jpg"
-
-                                                        width="75"
-
-                                                        height="75"
-                                                        alt="product"
-
-                                                        />
-                                                    <img
-
-                                                        src="${pageContext.request.contextPath}/assets/images/products/small/product-6-2.jpg"
-                                                        width="75"
-
-                                                        height="75"
-                                                        alt="product"
-
-                                                        />
-
-                                                </a>
-                                            </figure>
-                                            <div class="product-details">
-
-                                                <h3 class="product-title">
-                                                    <a href="product.html">Men Black Gentle Belt</a>
-
-                                                </h3>
-                                                <div class="ratings-container">
-
-                                                    <div class="product-ratings">
-
-                                                        <span
-                                                            class="ratings"
-
-                                                            style="width: 100%"
-                                                            ></span>
-
-                                                        <span class="tooltiptext 
-                                                              tooltip-top"></span>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="price-box">
-
-                                                    <span class="product-price">$49.00</span>
-                                                </div>
-
-                                            </div>
-                                        </div>
+                                        </c:forEach>
                                     </div>
-
-                                    <div class="featured-col">
-                                        <div
-
-                                            class="product-default left-details product-widget"
-                                            >
-
-                                            <figure>
-                                                <a href="product.html">
-
-                                                    <img
-                                                        src="${pageContext.request.contextPath}/assets/images/products/small/product-1.jpg"
-
-                                                        width="75"
-                                                        height="75"
-
-                                                        alt="product"
-
-                                                        />
-                                                    <img
-
-                                                        src="${pageContext.request.contextPath}/assets/images/products/small/product-1-2.jpg"
-                                                        width="75"
-
-                                                        height="75"
-                                                        alt="product"
-
-                                                        />
-                                                </a>
-
-                                            </figure>
-                                            <div class="product-details">
-
-                                                <h3 class="product-title">
-                                                    <a href="product.html"
-
-                                                       >Ultimate 3D Bluetooth Speaker</a
-                                                    >
-
-                                                </h3>
-                                                <div class="ratings-container">
-
-                                                    <div class="product-ratings">
-                                                        <span
-
-                                                            class="ratings"
-
-                                                            style="width: 100%"
-                                                            ></span>
-
-                                                        <span class="tooltiptext tooltip-top"></span>
-
-                                                    </div>
-                                                </div>
-                                                <div class="price-box">
-                                                    <span class="product-price">$49.00</span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-
-                                            class="product-default left-details product-widget"
-                                            >
-
-                                            <figure>
-                                                <a href="product.html">
-
-                                                    <img
-                                                        src="${pageContext.request.contextPath}/assets/images/products/small/product-2.jpg"
-
-                                                        width="75"
-                                                        height="75"
-
-                                                        alt="product"
-                                                        />
-
-                                                    <img
-                                                        src="${pageContext.request.contextPath}/assets/images/products/small/product-2-2.jpg"
-
-                                                        width="75"
-
-                                                        height="75"
-                                                        alt="product"
-
-                                                        />
-                                                </a>
-
-                                            </figure>
-                                            <div class="product-details">
-
-                                                <h3 class="product-title">
-                                                    <a href="product.html"
-
-                                                       >Brown Women Casual HandBag</a
-                                                    >
-
-                                                </h3>
-                                                <div class="ratings-container">
-
-                                                    <div class="product-ratings">
-                                                        <span
-
-                                                            class="ratings"
-                                                            style="width: 100%"
-
-                                                            ></span>
-
-                                                        <span class="tooltiptext tooltip-top"></span>
-
-                                                    </div>
-                                                </div>
-                                                <div class="price-box">
-                                                    <span class="product-price">$49.00</span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="product-default left-details product-widget"
-
-                                            >
-                                            <figure>
-
-                                                <a href="product.html">
-                                                    <img
-
-                                                        src="${pageContext.request.contextPath}/assets/images/products/small/product-3.jpg"
-                                                        width="75"
-
-                                                        height="75"
-
-                                                        alt="product"
-                                                        />
-
-                                                    <img
-                                                        src="${pageContext.request.contextPath}/assets/images/products/small/product-3-2.jpg"
-
-                                                        height="75"
-                                                        alt="product"
-
-                                                        />
-
-                                                </a>
-                                            </figure>
-
-                                            <div class="product-details">
-                                                <h3 class="product-title">
-
-                                                    <a href="product.html"
-                                                       >Circled Ultimate 3D Speaker</a
-
-                                                    >
-                                                </h3>
-
-                                                <div class="ratings-container">
-                                                    <div class="product-ratings">
-
-                                                        <span
-
-                                                            class="ratings"
-                                                            style="width: 100%"
-
-                                                            ></span>
-                                                        <span class="tooltiptext tooltip-top"></span>
-                                                    </div>
-
-                                                </div>
-                                                <div class="price-box">
-                                                    <span class="product-price">$49.00</span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
+                                </c:if> 
                             </div>
-
                         </div>
                     </div>
                 </aside>

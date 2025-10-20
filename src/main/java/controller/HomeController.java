@@ -33,7 +33,7 @@ public class HomeController extends HttpServlet {
     private ColorDAO colorDAO;
     private SizeDAO sizeDAO;
     
-    // 2. INIT() ĐỂ KHỞI TẠO TÀI NGUYÊN
+    // 2. INIT() ĐỂ KHỞI TẠO TÀI NGUYÊN (Giữ nguyên)
     @Override
     public void init() throws ServletException {
         System.out.println(">>> HomeController - Bắt đầu khởi tạo DAO...");
@@ -59,10 +59,10 @@ public class HomeController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         try {
-            // 1. Lấy list sản phẩm (đã áp dụng lọc/tìm kiếm)
+            // 1. Lấy list sản phẩm (đã áp dụng lọc/tìm kiếm) - (Giữ nguyên)
             List<Product> listProduct = findProductDoGet(request);
 
-            // 2. TÍCH HỢP DỮ LIỆU PHỤ VÀO listProduct
+            // 2. TÍCH HỢP DỮ LIỆU PHỤ VÀO listProduct (Giữ nguyên)
             if (listProduct != null && !listProduct.isEmpty()) {
                 for (Product p : listProduct) {
                     List<Gallery> galleries = galleryDAO.findByProductId(p.getId());
@@ -90,7 +90,7 @@ public class HomeController extends HttpServlet {
                 }
             }
 
-            // 3. Lấy list Category và phân loại
+            // 3. Lấy list Category và phân loại (Giữ nguyên)
             List<Category> listCategory = categoryDAO.findAll();
             if (listCategory == null) {
                 listCategory = new ArrayList<>();
@@ -104,13 +104,37 @@ public class HomeController extends HttpServlet {
                     childCategories.add(category);
                 }
             }
+            
+            // 4. LẤY DANH SÁCH FEATURED PRODUCTS (MỚI THÊM)
+            // Giả sử bạn đã tạo hàm findFeaturedProducts() trong ProductDAO
+            List<Product> listFeatured = productDAO.findFeaturedProducts();
+            
+            // Tải Gallery cho danh sách featured (vì sidebar JSP cần hiển thị ảnh)
+            if (listFeatured != null && !listFeatured.isEmpty()) {
+                for (Product fp : listFeatured) {
+                    // Chỉ cần tải gallery, không cần variant/color/size cho sidebar
+                    List<Gallery> galleries = galleryDAO.findByProductId(fp.getId());
+                    fp.setGalleries(galleries);
+                }
+            }
+            
+            // 5. LẤY CÁC LIST DÙNG CHO BỘ LỌC SIDEBAR (MỚI THÊM)
+            // (Thêm vào vì homePage.jsp của bạn có thể sẽ cần 2 list này cho bộ lọc)
+            List<Color> listColor = colorDAO.findAll();
+            List<Size> listSize = sizeDAO.findAll();
 
-            // 4. Set các list vào Request Scope
+
+            // 6. Set các list vào Request Scope (Cập nhật)
             request.setAttribute("listProduct", listProduct);
             request.setAttribute("rootCategories", rootCategories);
             request.setAttribute("childCategories", childCategories);
+            
+            // MỚI THÊM:
+            request.setAttribute("featuredProducts", listFeatured); 
+            request.setAttribute("listColor", listColor);
+            request.setAttribute("listSize", listSize);
 
-            // 5. Forward sang trang JSP
+            // 7. Forward sang trang JSP (Giữ nguyên)
             request.getRequestDispatcher(HOME_PAGE).forward(request, response);
             
         } catch (Exception e) {
@@ -125,10 +149,12 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // (Giữ nguyên)
         doGet(request, response);
     }
 
     private List<Product> findProductDoGet(HttpServletRequest request) {
+        // (Giữ nguyên)
         String actionSearch = request.getParameter("search") == null
                 ? "default"
                 : request.getParameter("search");

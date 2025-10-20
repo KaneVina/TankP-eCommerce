@@ -25,9 +25,6 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="demo4.html">Home</a></li>
                                 <li class="breadcrumb-item">
-                                    <a href="category.html">Shop</a>
-                                </li>
-                                <li class="breadcrumb-item">
                                     <a href="category.html">Admin Area</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">

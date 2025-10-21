@@ -2,25 +2,30 @@
 <div class="sidebar widget widget-dashboard mb-lg-0 mb-3 col-lg-2 order-0">
     <h2 class="text-uppercase"><i class="fas fa-home"></i> MY DASHBOARD</h2>
     <ul class="nav nav-tabs list flex-column mb-0" role="tablist">
+        
         <li class="nav-item">
-            <a class="nav-link active" id="dashboard-tab" data-toggle="tab" href="#dashboard"
+            <a class="nav-link active" id="dashboard-tab" 
+               href="${pageContext.request.contextPath}/dashboard" 
                role="tab" aria-controls="dashboard" aria-selected="true">Dashboard</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" id="order-tab" href="${pageContext.request.contextPath}/view/admin/productManagement.jsp">
+            <a class="nav-link" id="order-tab" 
+               href="${pageContext.request.contextPath}/dashboard/product">
                 Product Management
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" id="address-tab" href="${pageContext.request.contextPath}/view/admin/orderManagement.jsp">
+            <a class="nav-link" id="address-tab" 
+               href="${pageContext.request.contextPath}/dashboard/order">
                 Order Management
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" id="edit-tab" href="${pageContext.request.contextPath}/view/admin/accountManagement.jsp">
+            <a class="nav-link" id="edit-tab" 
+               href="${pageContext.request.contextPath}/dashboard/account">
                 Account Management
             </a>
         </li>

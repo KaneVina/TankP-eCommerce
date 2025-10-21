@@ -66,7 +66,7 @@
                                 <div class="row row-lg">
                                     <div class="col-6 col-md-4">
                                         <div class="feature-box text-center pb-4">
-                                            <a href="product-management.html" class="link-to-tab"><i class="fas fa-list"></i></a>
+                                            <a href="${pageContext.request.contextPath}/dashboard/product" class="link-to-tab"><i class="fas fa-list"></i></a>
                                             <div class="feature-box-content">
                                                 <h3>Product Management</h3>
                                             </div>
@@ -75,7 +75,7 @@
 
                                     <div class="col-6 col-md-4">
                                         <div class="feature-box text-center pb-4">
-                                            <a href="order-management.html" class="link-to-tab"><i class="fas fa-boxes"></i></a>
+                                            <a href="${pageContext.request.contextPath}/dashboard/order" class="link-to-tab"><i class="fas fa-boxes"></i></a>
                                             <div class="feature-box-content">
                                                 <h3>Order Management</h3>
                                             </div>
@@ -84,7 +84,7 @@
 
                                     <div class="col-6 col-md-4">
                                         <div class="feature-box text-center pb-4">
-                                            <a href="account-management.html" class="link-to-tab"><i class="fas fa-user"></i></a>
+                                            <a href="${pageContext.request.contextPath}/dashboard/account" class="link-to-tab"><i class="fas fa-user"></i></a>
                                             <div class="feature-box-content">
                                                 <h3>Account Management</h3>
                                             </div>
@@ -124,7 +124,7 @@
         <!-- mobile-menu-container -->
         <jsp:include page="../common/mobile-menu.jsp"></jsp:include>
 
-        <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+            <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/plugins.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/main.min.js"></script>

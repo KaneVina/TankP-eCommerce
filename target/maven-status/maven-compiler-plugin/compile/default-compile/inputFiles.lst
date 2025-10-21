@@ -5,12 +5,14 @@ D:\PRJ TANKP\TankP-eCommerce\src\main\java\model\Size.java
 D:\PRJ TANKP\TankP-eCommerce\src\main\java\utils\DBContext.java
 D:\PRJ TANKP\TankP-eCommerce\src\main\java\model\Order.java
 D:\PRJ TANKP\TankP-eCommerce\src\main\java\model\ProductVariant.java
-D:\PRJ TANKP\TankP-eCommerce\src\main\java\controller\ProductDetailController.java
 D:\PRJ TANKP\TankP-eCommerce\src\main\java\dao\ProductDAO.java
+D:\PRJ TANKP\TankP-eCommerce\src\main\java\controller\admin\DashBoardController.java
 D:\PRJ TANKP\TankP-eCommerce\src\main\java\dao\CategoryDAO.java
-D:\PRJ TANKP\TankP-eCommerce\src\main\java\controller\HomeController.java
 D:\PRJ TANKP\TankP-eCommerce\src\main\java\model\Product.java
+D:\PRJ TANKP\TankP-eCommerce\src\main\java\controller\customer\ProductDetailController.java
 D:\PRJ TANKP\TankP-eCommerce\src\main\java\dao\ColorDAO.java
+D:\PRJ TANKP\TankP-eCommerce\src\main\java\controller\customer\HomeController.java
+D:\PRJ TANKP\TankP-eCommerce\src\main\java\controller\admin\ProductController.java
 D:\PRJ TANKP\TankP-eCommerce\src\main\java\model\Color.java
 D:\PRJ TANKP\TankP-eCommerce\src\main\java\dao\GalleryDAO.java
 D:\PRJ TANKP\TankP-eCommerce\src\main\java\com\example\productapp\tankp\ecommerce\JakartaRestConfiguration.java

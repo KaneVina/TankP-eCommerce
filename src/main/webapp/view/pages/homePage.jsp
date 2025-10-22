@@ -116,9 +116,8 @@
                     </li>
 
                     <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/home">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Men</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        Accessories
+                        Fashion
                     </li>
 
                 </ol>
@@ -591,43 +590,27 @@
                         <div class="widget widget-featured">
                             <h3 class="widget-title">Featured</h3>
                             <div class="widget-body">
-
-                                <%-- Kiểm tra xem list có rỗng hay không --%>
                                 <c:if test="${not empty featuredProducts}">
 
                                     <div class="owl-carousel widget-featured-products">
-
-                                        <%-- Bắt đầu vòng lặp, nhóm 3 sản phẩm vào 1 slide (featured-col) --%>
                                         <c:forEach items="${featuredProducts}" var="fp" varStatus="status">
-
-                                            <%-- Mở 1 slide mới cho sản phẩm đầu tiên (0), 3, 6, ... --%>
                                             <c:if test="${status.index % 3 == 0}">
                                                 <div class="featured-col">
                                                 </c:if>
-
-                                                <%-- === BẮT ĐẦU 1 SẢN PHẨM === --%>
                                                 <div class="product-default left-details product-widget">
                                                     <figure>
-                                                        <%-- Dùng link động đến trang chi tiết sản phẩm --%>
                                                         <a href="productDetail?id=${fp.id}">
-
-                                                            <%-- Logic hiển thị 2 ảnh (ảnh chính và ảnh hover) --%>
                                                             <c:choose>
-                                                                <%-- Có ít nhất 1 ảnh --%>
                                                                 <c:when test="${!empty fp.galleries}">
-                                                                    <%-- Lấy ảnh 1 --%>
                                                                     <c:set var="image1" value="${fp.galleries[0].imageUrl}" />
                                                                     <img src="${fn:startsWith(image1, 'http') ? image1 : pageContext.request.contextPath.concat('/assets/images/products/').concat(image1)}"
                                                                          width="75" height="75" alt="${fp.name}" />
-
-                                                                    <%-- Kiểm tra xem có ảnh thứ 2 (ảnh hover) không --%>
                                                                     <c:if test="${fn:length(fp.galleries) > 1}">
                                                                         <c:set var="image2" value="${fp.galleries[1].imageUrl}" />
                                                                         <img src="${fn:startsWith(image2, 'http') ? image2 : pageContext.request.contextPath.concat('/assets/images/products/').concat(image2)}"
                                                                              width="75" height="75" alt="${fp.name} (hover)" />
                                                                     </c:if>
                                                                 </c:when>
-                                                                <%-- Không có ảnh nào --%>
                                                                 <c:otherwise>
                                                                     <img src="${pageContext.request.contextPath}/assets/images/no-image.png" 
                                                                          width="75" height="75" alt="No image available" />
@@ -642,10 +625,7 @@
                                                             <a href="productDetail?id=${fp.id}">${fp.name}</a>
                                                         </h3>
                                                         <div class="price-box">
-                                                            <%-- Hiển thị giá động (giá mới) --%>
                                                             <span class="product-price">$${fp.newPrice}</span>
-
-                                                            <%-- Nếu bạn muốn hiển thị cả giá cũ (nếu có) --%>
                                                             <c:if test="${fp.oldPrice > 0 && fp.oldPrice > fp.newPrice}">
                                                                 <span class="old-price">$${fp.oldPrice}</span>
                                                             </c:if>
@@ -668,11 +648,10 @@
     </main>
 
     <jsp:include page="../common/footer.jsp"></jsp:include>
-
     <jsp:include page="../common/loading.jsp"/> 
     <jsp:include page="../common/mobile-menu.jsp"></jsp:include>
 
-        <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/plugins.min.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/nouislider.min.js"></script>

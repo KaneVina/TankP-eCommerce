@@ -161,9 +161,7 @@
                                     <div class="tp-pro-modal__card">
                                         <div class="tp-pro-modal__card-header"><i class="fas fa-map-marker-alt"></i>Shipping Address</div>
                                         <div class="tp-pro-modal__card-body shipping-address">
-                                            <p class="mb-1"><strong>Recipient:</strong> <span class="recipient-name">-</span></p>
                                             <p class="mb-1"><strong>Address:</strong> <span class="address-details">-</span></p>
-                                            <p class="mb-0"><strong>Phone:</strong> <span class="recipient-phone">-</span></p>
                                         </div>
                                     </div>
 

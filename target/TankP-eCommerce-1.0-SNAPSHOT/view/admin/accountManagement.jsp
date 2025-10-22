@@ -49,7 +49,7 @@
                                         <i class="fas fa-user-shield align-middle mr-3"></i>Account Management
                                     </h3>
                                     <div class="d-flex align-items:center">
-                                        <button class="action-btn btn-create shadow-sm mr-2" title="Create New Account" onclick="openTpModal('accountCreateModal')">
+                                        <button class="action-btn btn-create shadow-sm mr-2" title="Create Staff Account" onclick="openTpModal('accountCreateModal')">
                                             <i class="fas fa-user-plus"></i>
                                             <span class="btn-text">Create</span>
                                         </button>
@@ -143,7 +143,7 @@
                 <div class="modal-content tp-pro-modal__content">
                     <form id="accountCreateForm" novalidate>
                         <div class="tp-pro-modal__header tp-pro-modal__header--create">
-                            <h5 class="tp-pro-modal__title"><i class="fas fa-user-plus text-success"></i> CREATE NEW ACCOUNT</h5>
+                            <h5 class="tp-pro-modal__title"><i class="fas fa-user-plus text-success"></i> CREATE STAFF ACCOUNT</h5>
                             <button type="button" class="tp-pro-modal__close-btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
 
@@ -212,7 +212,7 @@
                                         <div class="tp-pro-modal__card-body">
                                             <div class="tp-pro-modal__form-group">
                                                 <label class="tp-pro-modal__label">Account Role</label>
-                                                <select class="tp-pro-modal__select" required><option value="">Select Role</option><option>Admin</option><option>Staff</option><option>Customer</option></select>
+                                                <select class="tp-pro-modal__select" required><option value="">Select Role</option><option>Staff</option></select>
                                             </div>
                                             <hr>
                                             <div class="tp-pro-modal__form-group" style="margin-bottom: 0;">
@@ -233,7 +233,7 @@
                         <div class="tp-pro-modal__footer">
                             <p class="tp-pro-modal__footer-note">Powered by TankP</p>
                             <button type="reset" class="tp-pro-modal__btn tp-pro-modal__btn--secondary"><i class="fas fa-undo"></i> Reset</button>
-                            <button type="submit" class="tp-pro-modal__btn tp-pro-modal__btn--success"><i class="fas fa-check-circle"></i> Create Account</button>
+                            <button type="submit" class="tp-pro-modal__btn tp-pro-modal__btn--success"><i class="fas fa-check-circle"></i> Create Staff Account</button>
                         </div>
                     </form>
                 </div>
@@ -299,7 +299,7 @@
                                         <div class="tp-pro-modal__card-body">
                                             <div class="tp-pro-modal__form-group">
                                                 <label class="tp-pro-modal__label">Account Role</label>
-                                                <select id="updateRole" name="role" class="tp-pro-modal__select" required><option value="">Select Role</option><option>Admin</option><option>Staff</option><option>Customer</option></select>
+                                                <select id="updateRole" name="role" class="tp-pro-modal__select" required><option value="">Select Role</option><option>Staff</option><option>Customer</option></select>
                                             </div>
                                             <hr>
                                             <div class="tp-pro-modal__form-group" style="margin-bottom: 0;">
@@ -341,31 +341,6 @@
                                                             function openUpdateAccountModal(accountId) {
                                                                 console.log("Request to edit account with ID:", accountId);
                                                                 $('#updateAccountId').val(accountId);
-
-                                                                // TODO: AJAX call to fetch and populate data for the update modal
-                                                                // $.ajax({
-                                                                //     url: 'your-servlet-url',
-                                                                //     type: 'GET',
-                                                                //     data: { accountId: accountId },
-                                                                //     success: function(data) {
-                                                                //         $('#updateFirstName').val(data.firstName);
-                                                                //         $('#updateLastName').val(data.lastName);
-                                                                //         ...
-                                                                //
-                                                                //         // Set toggle switch (dùng .prop())
-                                                                //         $('#updateAccountStatus').prop('checked', data.status === 'active');
-                                                                //
-                                                                //         // Set order stats
-                                                                //         $('#updateTotalOrders').text(data.orders.total);
-                                                                //         $('#updateCompletedOrders').text(data.orders.completed);
-                                                                //         $('#updateTotalSpent').text('$ ' + data.orders.spent);
-                                                                //
-                                                                //         // Set address list
-                                                                //         $('#addressListUpdate ul').empty();
-                                                                //         data.addresses.forEach(function(addr) { ... });
-                                                                //     }
-                                                                // });
-
                                                                 openTpModal('accountUpdateModal');
                                                             }
 
@@ -396,19 +371,9 @@
                                                                     statusBadge.removeClass('bg-warning text-dark').addClass('bg-success text-white');
                                                                     statusBadge.text('Active');
                                                                 }
-
-                                                                // TODO: Gọi AJAX tại đây để cập nhật DB
-                                                                // $.post('your-toggle-status-servlet', { userId: userId, newStatus: (btn.hasClass('btn-delete') ? 'active' : 'inactive') }, function(response) {
-                                                                //    if(!response.success) { 
-                                                                //       alert('Failed to update status. Reverting changes.');
-                                                                //       toggleTableRowStatus(buttonElement, userId); // Tự động đảo ngược lại nếu lỗi
-                                                                //    }
-                                                                // });
                                                             }
 
                                                             $(document).ready(function () {
-                                                                // Cần thêm class .was-validated vào form để kích hoạt
-                                                                // Bootstrap validation styles (nếu CSS của tôi chưa đè hết)
                                                                 $('#accountCreateForm, #accountUpdateForm').on('submit', function (e) {
                                                                     e.preventDefault();
                                                                     if (this.checkValidity() === false) {

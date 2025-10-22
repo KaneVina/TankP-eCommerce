@@ -6,15 +6,18 @@ import java.util.LinkedHashMap;
 import model.Product;
 import utils.GenericDAO;
 import java.util.ArrayList;
+import model.Gallery; 
+import dao.GalleryDAO; 
 
 public class ProductDAO extends GenericDAO<Product> {
+private GalleryDAO galleryDAO = new GalleryDAO();
 
     @Override
     public List<Product> findAll() {
         String sql = "SELECT [id], [name], "
                 + "[newPrice], "
                 + "[oldPrice], "
-                + "[description], [category_id], " // <-- SỬA LỖI: THÊM DẤU PHẨY Ở ĐÂY
+                + "[description], [category_id], "
                 + "[isFeatured] "
                 + "FROM [dbo].[Product]";
 
@@ -26,7 +29,6 @@ public class ProductDAO extends GenericDAO<Product> {
         throw new UnsupportedOperationException("Not supported yet");
     }
 
-    // Hàm này của bạn đã ĐÚNG (vì có dấu phẩy)
     public Product findById(Product product) {
         String sql = "SELECT [id]"
                 + " , [name]"
@@ -34,7 +36,7 @@ public class ProductDAO extends GenericDAO<Product> {
                 + " , [oldPrice]"
                 + " , [description]"
                 + " , [category_id]"
-                + " , [isFeatured]" // <-- ĐÃ CÓ DẤU PHẨY (ĐÚNG)
+                + " , [isFeatured]" 
                 + " FROM [dbo].[Product]"
                 + " WHERE id = ?";
 
@@ -48,7 +50,7 @@ public class ProductDAO extends GenericDAO<Product> {
         String sql = "SELECT [id], [name], "
                 + "[newPrice], "
                 + "[oldPrice], "
-                + "[description], [category_id], " // <-- SỬA LỖI: THÊM DẤU PHẨY Ở ĐÂY
+                + "[description], [category_id], "
                 + "[isFeatured] "
                 + "FROM [dbo].[Product] "
                 + "WHERE [category_id] = ?";
@@ -69,7 +71,7 @@ public class ProductDAO extends GenericDAO<Product> {
         String sql = "SELECT [id], [name], "
                 + "[newPrice], "
                 + "[oldPrice], "
-                + "[description], [category_id], " // <-- SỬA LỖI: THÊM DẤU PHẨY Ở ĐÂY
+                + "[description], [category_id], "
                 + "[isFeatured] "
                 + "FROM [dbo].[product] "
                 + "where [name] like ?";
@@ -80,14 +82,13 @@ public class ProductDAO extends GenericDAO<Product> {
         return list;
     }
 
-    // Hàm này của bạn đã ĐÚNG (vì có dấu phẩy)
     public List<Product> findFeaturedProducts() {
         String sql = "SELECT [id], [name], "
                 + "[newPrice], "
                 + "[oldPrice], "
                 + "[description], [category_id], " 
                 + "[isFeatured] "
-                + "FROM [dbo].[Product] "
+                + "FROM [dbo].[product] "
                 + "WHERE [isFeatured] = 1"; 
 
         return queryGenericDAO(Product.class, sql, null);

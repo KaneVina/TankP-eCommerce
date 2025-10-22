@@ -14,13 +14,13 @@
         <meta name="description" content="TankP eCommerce" />
         <meta name="author" content="SW-THEMES" />
 
-        <link rel="icon" type="image/x-icon" 
-              href="${pageContext.request.contextPath}/assets/images/icons/favicon.png"/>
+        <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/assets/images/icons/favicon.png"/>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.min.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"/>
         <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logo/logoWBN.png">
-        <style>.config-color-list {
+        <style>
+            .config-color-list {
                 display: flex;
                 gap: 8px;
                 list-style: none;
@@ -39,40 +39,31 @@
     <body>
         <jsp:include page="../common/header.jsp"></jsp:include>
             <main class="main">
-
                 <div class="page-wrapper">
                     <main class="main">
                         <div class="container">
                             <nav aria-label="breadcrumb" class="breadcrumb-nav">
-
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
                                         <a href="${pageContext.request.contextPath}/home"><i class="icon-home"></i></a>
 
                                 </li>
                                 <li class="breadcrumb-item"><a href="#">Shop</a></li>
-
-                                <c:if test="${not empty category}">
+                                    <c:if test="${not empty category}">
                                     <li class="breadcrumb-item"><a href="#">${category.name}</a></li>
                                     </c:if>
-
                                 <li class="breadcrumb-item">
-
                                     <a href="#">${product.name}</a>
                                 </li>
                             </ol>
-
                         </nav>
 
                         <div class="product-single-container product-single-default">
                             <div class="cart-message d-none">
-                                <strong class="single-cart-notice">“${product.name}”</strong>
-
-                                <span>has been added to your cart.</span>
+                                <strong class="single-cart-notice">“${product.name}”</strong><span>has been added to your cart.</span>
                             </div>
 
                             <div class="row">
-
                                 <div class="col-lg-5 col-md-6 product-single-gallery">
                                     <div class="product-slider-container">
                                         <div class="label-group"><div class="product-label label-hot">HOT</div></div>
@@ -90,9 +81,9 @@
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <img class="product-single-image" 
-                                                                         src="${pageContext.request.contextPath}/assets/images/products/${imageUrl}" 
-                                                                         data-zoom-image="${pageContext.request.contextPath}/assets/images/products/${imageUrl}" 
-                                                                         width="468" height="468" alt="${product.name}"/>
+                                                                         src="${pageContext.request.contextPath}/${imageUrl}" 
+                                                                         data-zoom-image="${pageContext.request.contextPath}/${imageUrl}" 
+                                                                         ... />
                                                                 </c:otherwise>
                                                             </c:choose>
                                                         </div>
@@ -124,7 +115,7 @@
                                                                 <img src="${imageUrl}" width="110" height="110" alt="Thumbnail"/>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <img src="${pageContext.request.contextPath}/assets/images/products/${imageUrl}" width="110" height="110" alt="Thumbnail"/>
+                                                                <img src="${pageContext.request.contextPath}/${imageUrl}" width="110" height="110" alt="Thumbnail"/>
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </div>
@@ -443,437 +434,97 @@
                         </div>
 
                         <div class="products-section pt-0">
-                            <h2 class="section-title">Related Products</h2>
-
+                            <h2 class="section-title">Featured product</h2>
                             <div class="products-slider owl-carousel owl-theme dots-top dots-small">
 
-                                <div class="product-default">
-                                    <figure>
+                                <%-- 1. Lặp qua danh sách 'listProduct' (đã được lọc ở Controller) --%>
+                                <c:forEach items="${listProduct}" var="p">
 
-                                        <a href="product.html">
-                                            <img
-                                                src="${pageContext.request.contextPath}/assets/images/products/product-1.jpg"
+                                    <%-- 2. ĐÃ XÓA <c:if test="${p.featured == true}"> TẠI ĐÂY --%>
 
-                                                width="280"
-                                                height="280"
+                                    <div class="product-default">
+                                        <figure>
+                                            <a href="productDetail?id=${p.id}">
 
-                                                alt="Ultimate 3D Bluetooth Speaker"
-                                                />
+                                                <%-- Ảnh 1: Lấy ảnh đầu tiên --%>
+                                                <c:set var="image1" value="${p.getThumbnail()}" />
+                                                <c:choose>
+                                                    <%-- Nếu là link web (http) --%>
+                                                    <c:when test="${fn:startsWith(image1, 'http')}">
+                                                        <img src="${image1}" width="280" height="280" alt="${p.name}" />
+                                                    </c:when>
+                                                    <%-- Nếu là ảnh local (như no-image.png) --%>
+                                                    <c:otherwise>
+                                                        <img src="${pageContext.request.contextPath}/${image1}" width="280" height="280" alt="${p.name}" />
+                                                    </c:otherwise>
+                                                </c:choose>
 
-                                            <img
-                                                src="${pageContext.request.contextPath}/assets/images/products/product-1-2.jpg"
+                                                <%-- Ảnh 2 (cho hover) --%>
+                                                <c:set var="image2" value="${p.getThumbnail()}" />
+                                                <c:if test="${not empty p.galleries && fn:length(p.galleries) > 1}">
+                                                    <c:set var="image2" value="${p.galleries.get(1).imageUrl}" />
+                                                </c:if>
+                                                <c:choose>
+                                                    <%-- Nếu là link web (http) --%>
+                                                    <c:when test="${fn:startsWith(image2, 'http')}">
+                                                        <img src="${image2}" width="280" height="280" alt="${p.name}" />
+                                                    </c:when>
+                                                    <%-- Nếu là ảnh local (như no-image.png) --%>
+                                                    <c:otherwise>
+                                                        <img src="${pageContext.request.contextPath}/${image2}" width="280" height="280" alt="${p.name}" />
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </a>
 
-                                                width="280"
-                                                height="280"
-
-                                                alt="Ultimate 3D Bluetooth Speaker"
-                                                />
-
-                                        </a>
-                                        <div class="label-group">
-
-                                            <div class="product-label label-hot">HOT</div>
-                                            <div class="product-label label-sale">-20%</div>
-                                        </div>
-
-                                    </figure>
-                                    <div class="product-details">
-
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category"
-                                               >Category</a>
-
-                                        </div>
-                                        <h3 class="product-title">
-
-                                            <a href="product.html">Ultimate 3D Bluetooth Speaker</a>
-                                        </h3>
-
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-
-                                                <span class="ratings" style="width: 80%"></span>
-                                                <span class="tooltiptext tooltip-top"></span>
+                                            <%-- ... (Phần giá và chi tiết giữ nguyên) ... --%>
+                                            <div class="label-group">
+                                                <c:if test="${p.newPrice > 0 && p.newPrice < p.oldPrice}">
+                                                    <div class="product-label label-sale">SALE</div>
+                                                </c:if>
                                             </div>
-
-                                        </div>
-                                        <div class="price-box">
-
-                                            <del class="old-price">$59.00</del>
-                                            <span class="product-price">$49.00</span>
-
-                                        </div>
-                                        <div class="product-action">
-                                            <a
-
-                                                href="wishlist.html"
-                                                title="Wishlist"
-
-                                                class="btn-icon-wish"
-                                                ><i class="icon-heart"></i
-
-                                                ></a>
-                                            <a href="product.html" class="btn-icon btn-add-cart"
-
-                                               ><i class="fa fa-arrow-right"></i
-                                                ><span>SELECT OPTIONS</span></a>
-
-                                            <a
-                                                href="ajax/product-quick-view.html"
-
-                                                class="btn-quickview"
-                                                title="Quick View"
-
-                                                ><i class="fas fa-external-link-alt"></i></a>
+                                        </figure>
+                                        <div class="product-details">
+                                            <div class="category-list">
+                                                <a href="category?id=${p.category_id}" class="product-category">
+                                                    Category
+                                                </a>
+                                            </div>
+                                            <h3 class="product-title">
+                                                <a href="productDetail?id=${p.id}">${p.name}</a>
+                                            </h3>
+                                            <div class="ratings-container">
+                                            </div>
+                                            <div class="price-box">
+                                                <del class="old-price">$${p.oldPrice}</del>
+                                                <span class="product-price">$${p.newPrice}</span>
+                                            </div>
+                                            <div class="product-action">
+                                                <a href="wishlist.html" title="Wishlist" class="btn-icon-wish"><i class="icon-heart"></i></a>
+                                                <a href="productDetail?id=${p.id}" class="btn-icon btn-add-cart">
+                                                    <i class="fa fa-arrow-right"></i><span>SELECT OPTIONS</span>
+                                                </a>
+                                                <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
+                                            </div>
                                         </div>
                                     </div>
 
-                                </div>
-
-                                <div class="product-default">
-                                    <figure>
-
-                                        <a href="product.html">
-                                            <img
-
-                                                src="${pageContext.request.contextPath}/assets/images/products/product-3.jpg"
-                                                width="280"
-
-                                                height="280"
-                                                alt="Circled Ultimate 3D Speaker"
-
-                                                />
-                                            <img
-
-                                                src="${pageContext.request.contextPath}/assets/images/products/product-3-2.jpg"
-                                                width="280"
-
-                                                height="280"
-                                                alt="Circled Ultimate 3D Speaker"
-
-                                                />
-                                        </a>
-                                        <div class="label-group">
-
-                                            <div class="product-label label-hot">HOT</div>
-                                            <div class="product-label label-sale">-20%</div>
-
-                                        </div>
-                                    </figure>
-                                    <div class="product-details">
-
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category"
-
-                                               >Category</a>
-                                        </div>
-
-                                        <h3 class="product-title">
-                                            <a href="product.html">Circled Ultimate 3D Speaker</a>
-
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-
-                                                <span class="ratings" style="width: 80%"></span>
-                                                <span class="tooltiptext tooltip-top"></span>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="price-box">
-                                            <del class="old-price">$59.00</del>
-
-                                            <span class="product-price">$49.00</span>
-                                        </div>
-                                        <div class="product-action">
-
-                                            <a
-                                                href="wishlist.html"
-
-                                                title="Wishlist"
-                                                class="btn-icon-wish"
-
-                                                ><i class="icon-heart"></i
-                                                ></a>
-
-                                            <a href="product.html" class="btn-icon btn-add-cart"
-                                               ><i class="fa fa-arrow-right"></i
-
-                                                ><span>SELECT OPTIONS</span></a>
-                                            <a
-
-                                                href="ajax/product-quick-view.html"
-                                                class="btn-quickview"
-
-                                                title="Quick View"
-                                                ><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="product-default">
-
-                                    <figure>
-                                        <a href="product.html">
-
-                                            <img
-                                                src="${pageContext.request.contextPath}/assets/images/products/product-7.jpg"
-
-                                                width="280"
-                                                height="280"
-
-                                                alt="Brown-Black Men Casual Glasses"
-                                                />
-
-                                            <img
-                                                src="${pageContext.request.contextPath}/assets/images/products/product-7-2.jpg"
-                                                width="280"
-
-                                                height="280"
-                                                alt="Brown-Black Men Casual Glasses"
-
-                                                />
-                                        </a>
-
-                                        <div class="label-group">
-                                            <div class="product-label label-hot">HOT</div>
-
-                                            <div class="product-label label-sale">-20%</div>
-                                        </div>
-                                    </figure>
-
-                                    <div class="product-details">
-                                        <div class="category-list">
-
-                                            <a href="category.html" class="product-category"
-                                               >Category</a>
-
-                                        </div>
-                                        <h3 class="product-title">
-                                            <a href="product.html">Brown-Black Men Casual Glasses</a>
-
-                                        </h3>
-                                        <div class="ratings-container">
-
-                                            <div class="product-ratings">
-                                                <span class="ratings" style="width: 80%"></span>
-
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div>
-
-                                        </div>
-                                        <div class="price-box">
-                                            <del class="old-price">$59.00</del>
-
-                                            <span class="product-price">$49.00</span>
-                                        </div>
-
-                                        <div class="product-action">
-                                            <a
-
-                                                href="wishlist.html"
-                                                title="Wishlist"
-
-                                                class="btn-icon-wish"
-                                                ><i class="icon-heart"></i></a>
-                                            <a href="product.html" class="btn-icon 
-                                               btn-add-cart"
-                                               ><i class="fa fa-arrow-right"></i><span>SELECT OPTIONS</span></a>
-                                            <a
-
-                                                href="ajax/product-quick-view.html"
-                                                class="btn-quickview"
-
-                                                title="Quick View"
-                                                ><i class="fas fa-external-link-alt"></i></a>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="product-default">
-                                    <figure>
-
-                                        <a href="product.html">
-                                            <img
-                                                src="${pageContext.request.contextPath}/assets/images/products/product-6.jpg"
-
-                                                width="280"
-                                                height="280"
-
-                                                alt="Men Black Gentle Belt"
-                                                />
-
-                                            <img
-                                                src="${pageContext.request.contextPath}/assets/images/products/product-6-2.jpg"
-
-                                                width="280"
-                                                height="280"
-
-                                                alt="Men Black Gentle Belt"
-                                                />
-
-                                        </a>
-                                        <div class="label-group">
-
-                                            <div class="product-label label-hot">HOT</div>
-                                            <div class="product-label label-sale">-20%</div>
-                                        </div>
-
-                                    </figure>
-                                    <div class="product-details">
-
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category"
-
-                                               >Category</a>
-                                        </div>
-                                        <h3 class="product-title">
-
-                                            <a href="product.html">Men Black Gentle Belt</a>
-                                        </h3>
-
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-
-                                                <span class="ratings" style="width: 80%"></span>
-                                                <span class="tooltiptext tooltip-top"></span>
-
-                                            </div>
-                                        </div>
-                                        <div class="price-box">
-
-                                            <del class="old-price">$59.00</del>
-                                            <span class="product-price">$49.00</span>
-
-                                        </div>
-                                        <div class="product-action">
-                                            <a
-
-                                                href="wishlist.html"
-                                                title="Wishlist"
-
-                                                class="btn-icon-wish"
-                                                ><i class="icon-heart"></i
-
-                                                ></a>
-                                            <a href="product.html" class="btn-icon btn-add-cart"
-
-                                               ><i class="fa fa-arrow-right"></i
-                                                ><span>SELECT OPTIONS</span></a>
-
-                                            <a
-                                                href="ajax/product-quick-view.html"
-
-                                                class="btn-quickview"
-                                                title="Quick View"
-
-                                                ><i class="fas fa-external-link-alt"></i></a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="product-default">
-                                    <figure>
-
-                                        <a href="product.html">
-                                            <img
-
-                                                src="${pageContext.request.contextPath}/assets/images/products/product-4.jpg"
-                                                width="280"
-
-                                                height="280"
-                                                alt="Blue Backpack for the Young - S"
-
-                                                />
-                                            <img
-
-                                                src="${pageContext.request.contextPath}/assets/images/products/product-4-2.jpg"
-                                                width="280"
-
-                                                height="280"
-                                                alt="Blue Backpack for the Young - S"
-
-                                                />
-                                        </a>
-
-                                        <div class="label-group">
-                                            <div class="product-label label-hot">HOT</div>
-                                            <div class="product-label label-sale">-20%</div>
-
-                                        </div>
-                                    </figure>
-
-                                    <div class="product-details">
-                                        <div class="category-list">
-                                            <a href="category.html" class="product-category"
-
-                                               >Category</a>
-                                        </div>
-
-                                        <h3 class="product-title">
-                                            <a href="product.html">Blue Backpack for the Young - S</a>
-
-                                        </h3>
-                                        <div class="ratings-container">
-                                            <div class="product-ratings">
-
-                                                <span class="ratings" style="width: 80%"></span>
-                                                <span class="tooltiptext tooltip-top"></span>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="price-box">
-                                            <del class="old-price">$59.00</del>
-
-                                            <span class="product-price">$49.00</span>
-                                        </div>
-                                        <div class="product-action">
-
-                                            <a
-                                                href="wishlist.html"
-
-                                                title="Wishlist"
-                                                class="btn-icon-wish"
-
-                                                ><i class="icon-heart"></i></a>
-                                            <a href="product.html" class="btn-icon btn-add-cart">
-
-                                                <i class="fa fa-arrow-right"></i>
-                                                <span>SELECT OPTIONS</span></a>
-
-                                            <a
-                                                href="ajax/product-quick-view.html"
-
-                                                class="btn-quickview"
-                                                title="Quick View"
-
-                                                ><i class="fas fa-external-link-alt"></i
-                                                ></a>
-
-                                        </div>
-                                    </div>
-                                </div>
-
+                                    <%-- 3. ĐÃ XÓA </c:if> TẠI ĐÂY --%>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <jsp:include page="../common/footer.jsp"></jsp:include>
-        <jsp:include page="../common/loading.jsp"/> 
-        <jsp:include page="../common/mobile-menu.jsp"></jsp:include>
+    <jsp:include page="../common/footer.jsp"></jsp:include>
+    <jsp:include page="../common/loading.jsp"/> 
+    <jsp:include page="../common/mobile-menu.jsp"></jsp:include>
 
 
-            <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/plugins.min.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/main.min.js"></script>
-    </body>
+        <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/plugins.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/main.min.js"></script>
+</body>
 </html>

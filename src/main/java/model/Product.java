@@ -10,7 +10,7 @@ public class Product {
     private double oldPrice;
     private String description;
     private int category_id;
-    private boolean isFeatured;
+    private boolean isFeatured; // Tên thuộc tính
     private transient List<Gallery> galleries;
     private transient List<ProductVariant> variants;
 
@@ -98,9 +98,14 @@ public class Product {
         this.galleries = galleries;
     }
 
-    public boolean isIsFeatured() {
+    // ==========================================
+    // === ĐÃ SỬA TÊN PHƯƠNG THỨC TẠI ĐÂY ===
+    // ==========================================
+    // Đổi từ isIsFeatured() thành isFeatured()
+    public boolean isFeatured() {
         return isFeatured;
     }
+    // ==========================================
 
     public void setIsFeatured(boolean isFeatured) {
         this.isFeatured = isFeatured;
@@ -189,14 +194,14 @@ public class Product {
             return this;
         }
 
-        public ProductBuilder isFeatured(boolean isFeatured) { 
+        public ProductBuilder isFeatured(boolean isFeatured) {
             this.isFeatured = isFeatured;
             return this;
         }
 
         public Product build() {
             Product p = new Product(this);
-            p.setIsFeatured(this.isFeatured); 
+            p.setIsFeatured(this.isFeatured);
             return p;
         }
     }
